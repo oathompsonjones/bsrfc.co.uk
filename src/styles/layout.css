@@ -105,6 +105,12 @@ nav {
         }
     }
 
+    @keyframes beta-center {
+        to {
+            top: 25%;
+        }
+    }
+
     @keyframes nav-hold {
         to {
             translate: 0 100px;
@@ -123,9 +129,15 @@ nav {
         animation-range: 0 175px, 0 75px;
     }
 
-    .site-logo {
-        transform-origin: top;
+    .site-logo-image {
+        transform-origin: top center;
         animation: logo-shrink linear both;
+        animation-timeline: scroll(root);
+        animation-range: 0 75px;
+    }
+
+    .site-beta {
+        animation: beta-center linear both;
         animation-timeline: scroll(root);
         animation-range: 0 75px;
     }

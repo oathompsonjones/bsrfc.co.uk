@@ -98,10 +98,34 @@ export function Header(): ReactNode {
             >
                 <Box
                     className="site-logo"
-                    sx={{ alignItems: "flex-start", display: "flex", height: logoSize, justifyContent: "center" }}
+                    sx={{
+                        alignItems: "flex-start",
+                        display: "flex",
+                        height: logoSize,
+                        justifyContent: "center",
+                        position: "relative",
+                    }}
                 >
+                    <Box
+                        className="site-beta"
+                        component="p"
+                        sx={{
+                            color: "common.white",
+                            fontSize: { sm: "clamp(2.5rem, 5vw, 4rem)", xs: "2rem" },
+                            fontWeight: 900,
+                            left: { sm: "-1rem", xs: 0 },
+                            lineHeight: 1,
+                            m: 0,
+                            position: "absolute",
+                            top: "50%",
+                            transform: "translateY(-50%)",
+                        }}
+                    >
+                        BETA
+                    </Box>
                     <Image
                         alt="Logo"
+                        className="site-logo-image"
                         height={logoSize}
                         src="/logo.svg"
                         width={logoSize}
