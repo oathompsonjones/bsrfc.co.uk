@@ -1,8 +1,8 @@
 "use client";
 
-import { Box, Typography } from "@mui/material";
 import type { ReactNode } from "react";
-import { TeamSection } from "components/teamSection";
+import { TeamSection } from "components/pages/teams/teamSection";
+import { TeamsHero } from "components/pages/teams/teamsHero";
 import { useParams } from "next/navigation";
 
 /**
@@ -17,21 +17,7 @@ export default function Teams(): ReactNode {
 
     return (
         <>
-            <Box sx={{ py: 10, textAlign: "center" }}>
-                <Typography variant="h2">
-                    #OneClub
-                </Typography>
-
-                <Typography sx={{ mt: 2 }} variant="h1">
-                    Our Teams
-                </Typography>
-
-                <Typography sx={{ maxWidth: 700, mt: 2, mx: "auto" }} variant="body1">
-                    From our youngest players taking their first steps
-                    on the pitch, to our senior sides competing at the
-                    highest level, we're all part of the same club.
-                </Typography>
-            </Box>
+            <TeamsHero />
             {isTeamVisible("men") && (
                 <TeamSection
                     teams={[

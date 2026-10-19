@@ -1,6 +1,12 @@
 "use client";
 
-import { CssBaseline, StyledEngineProvider, ThemeProvider, createTheme, responsiveFontSizes } from "@mui/material";
+import {
+    CssBaseline,
+    StyledEngineProvider,
+    ThemeProvider,
+    createTheme,
+    responsiveFontSizes,
+} from "@mui/material";
 import DefaultPropsProvider from "@mui/material/DefaultPropsProvider";
 import type { ReactNode } from "react";
 
@@ -9,6 +15,24 @@ const PINK = "#e01583";
 const RED = "#e80029";
 const WHITE = "#ffffff";
 const BLACK = "#121212";
+const PAPER = "#00194b";
+
+declare module "@mui/material/styles" {
+    // Palette customization uses interfaces so MUI's theme types can be augmented.
+    // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+    interface Palette {
+        tertiary: {
+            main: string;
+        };
+    }
+
+    // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+    interface PaletteOptions {
+        tertiary?: {
+            main: string;
+        };
+    }
+}
 
 /**
  * Provides the theme to the application.
@@ -57,7 +81,10 @@ export function ThemeContextProvider({ children }: { readonly children: ReactNod
             MuiSkeleton: { styleOverrides: { root: { borderRadius: "0" } } },
         },
         cssVariables: { colorSchemeSelector: "class" },
-        palette: { background: { default: basePalette.primary.main }, ...basePalette },
+        palette: {
+            background: { default: basePalette.primary.main, paper: PAPER },
+            ...basePalette,
+        },
         typography: (palette) => ({
             ...Object.fromEntries([
                 "h1",
