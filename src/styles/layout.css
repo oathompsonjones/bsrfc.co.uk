@@ -68,6 +68,7 @@ nav {
 
 .site-header {
     height: 166px;
+    padding: 1rem 1rem 0;
     position: relative !important;
     z-index: 1100;
 }

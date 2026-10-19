@@ -1,9 +1,13 @@
+// @ts-check
+import { next } from "@million/lint";
+
 /** @type {import('next').NextConfig} */
-export default {
+const nextConfig = {
     compiler: {
         emotion: true,
         styledComponents: true,
     },
+    reactStrictMode: true,
     // eslint-disable-next-line require-await
     async redirects() {
         return Object.entries({
@@ -15,7 +19,7 @@ export default {
             source: `/${source}`,
         }));
     },
-    webpack(config) {
+    webpack: (config) => {
         config.module.rules.push({
             test: /\.svg$/u,
             use: ["@svgr/webpack"],
@@ -24,3 +28,5 @@ export default {
         return config;
     },
 };
+
+export default next({ rsc: true })(nextConfig);

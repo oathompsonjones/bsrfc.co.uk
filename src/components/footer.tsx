@@ -1,5 +1,15 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Divider, IconButton, Stack, Typography } from "@mui/material";
+import Facebook from "@mui/icons-material/Facebook";
+import { Fragment } from "react";
+import Instagram from "@mui/icons-material/Instagram";
 import type { ReactNode } from "react";
+import XIcon from "@mui/icons-material/X";
+
+const socials = [
+    { href: "https://x.com/BSRUGBY", icon: <XIcon />, label: "X (Twitter)" },
+    { href: "https://www.instagram.com/bsrfc", icon: <Instagram />, label: "Instagram" },
+    { href: "https://www.facebook.com/BishopsStortfordRugbyClub", icon: <Facebook />, label: "Facebook" },
+];
 
 /**
  * Contains the footer element.
@@ -18,18 +28,44 @@ export function Footer(): ReactNode {
     ];
 
     return (
-        <Box component="footer" sx={{ px: { xs: 2, sm: 0 }, py: 1 }}>
-            <Stack spacing={0.5} alignItems="center" sx={{ textAlign: "center", width: "100%" }}>
+        <Box component="footer" sx={{ px: { sm: 0, xs: 2 }, py: 1 }}>
+            <Divider className="full-width" sx={{ my: 1 }} />
+            <Stack spacing={0.5} sx={{ alignItems: "center", textAlign: "center", width: "100%" }}>
+                <Stack direction="row" spacing={1}>
+                    {socials.map(({ href, icon, label }) => (
+                        <IconButton
+                            aria-label={label}
+                            color="inherit"
+                            component="a"
+                            href={href}
+                            key={href}
+                            rel="noopener noreferrer"
+                            target="_blank"
+                        >
+                            {icon}
+                        </IconButton>
+                    ))}
+                </Stack>
                 <Stack
-                    direction={{ xs: "column", sm: "row" }}
-                    divider={<Box component="span" sx={{ color: "lightgrey", display: { xs: "none", sm: "inline" }, px: 1 }}>•</Box>}
-                    alignItems="center"
-                    sx={{ maxWidth: "100%" }}
+                    direction={{ sm: "row", xs: "column" }}
+                    sx={{ alignItems: "center", maxWidth: "100%" }}
                 >
-                    {content.map((item) => (
-                        <Typography key={item} variant="caption">
-                            {item}
-                        </Typography>
+                    {content.map((item, index) => (
+                        <Fragment key={item}>
+                            {index > 0 && (
+                                <Box
+                                    component="span"
+                                    sx={{
+                                        color: "lightgrey",
+                                        display: { sm: "inline", xs: "none" },
+                                        px: 1,
+                                    }}
+                                >
+                                    •
+                                </Box>
+                            )}
+                            <Typography variant="caption">{item}</Typography>
+                        </Fragment>
                     ))}
                 </Stack>
                 <Typography variant="caption">

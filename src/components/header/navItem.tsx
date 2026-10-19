@@ -1,18 +1,18 @@
 "use client";
 
 import { Button, ButtonGroup, Menu, MenuItem } from "@mui/material";
-import { KeyboardArrowDown } from "@mui/icons-material";
 import type { Dispatch, ReactNode, SetStateAction } from "react";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
+import { KeyboardArrowDown } from "@mui/icons-material";
 
 type Props<S> = {
-    href: string;
-    label: string;
-} | {
     children: ReactNode;
     href: string;
     label: string;
     menuState: [S, Dispatch<SetStateAction<S>>];
+} | {
+    href: string;
+    label: string;
 };
 
 /**
@@ -30,37 +30,48 @@ export function NavItem(props: Props<string | null>): ReactNode {
         const anchorRef = useRef<HTMLDivElement>(null);
         const isOpen = openMenu === href.slice(1);
 
-        // The menu's modal layer ignores pointer events so other nav buttons stay clickable, so close on outside presses here.
         useEffect(() => {
-            if (!isOpen) return undefined;
+            if (!isOpen)
+                return (): void => undefined;
+
             const onPointerDown = (event: PointerEvent): void => {
                 const target = event.target as Element;
-                if (!anchorRef.current?.contains(target) && !target.closest(".MuiMenu-paper")) setOpenMenu(null);
+
+                if (!anchorRef.current || !anchorRef.current.contains(target) && !target.closest(".MuiMenu-paper"))
+                    setOpenMenu(null);
             };
+
             document.addEventListener("pointerdown", onPointerDown);
-            return () => document.removeEventListener("pointerdown", onPointerDown);
+
+            return (): void => document.removeEventListener("pointerdown", onPointerDown);
         }, [isOpen, setOpenMenu]);
+
+        const toggleMenu = useCallback(
+            (): void => setOpenMenu(openMenu === href.slice(1) ? null : href.slice(1)),
+            [setOpenMenu, openMenu, href],
+        );
+        const closeMenu = useCallback((): void => setOpenMenu(null), [setOpenMenu]);
 
         return (
             <>
-                <ButtonGroup variant="text" color="inherit" ref={anchorRef} id="button-group">
-                    <NavItem label={label} href={href} />
-                    <Button onClick={() => setOpenMenu(openMenu === href.slice(1) ? null : href.slice(1))} size="small">
+                <ButtonGroup color="inherit" id="button-group" ref={anchorRef} variant="text">
+                    <NavItem href={href} label={label} />
+                    <Button onClick={toggleMenu} size="small">
                         <KeyboardArrowDown />
                     </Button>
                 </ButtonGroup>
                 <Menu
-                    open={isOpen}
                     anchorEl={anchorRef.current}
-                    hideBackdrop
-                    disableScrollLock
                     disableEnforceFocus
-                    onClose={() => setOpenMenu(null)}
-                    onClick={() => setOpenMenu(null)}
+                    disableScrollLock
+                    hideBackdrop
+                    onClick={closeMenu}
+                    onClose={closeMenu}
+                    open={isOpen}
                     slotProps={{
                         list: { disablePadding: true },
                         paper: { sx: { backgroundColor: "primary.main", pointerEvents: "auto" } },
-                        root: { sx: { pointerEvents: "none" } }
+                        root: { sx: { pointerEvents: "none" } },
                     }}
                 >
                     {[children].flat().map((child, index) => (
@@ -74,8 +85,9 @@ export function NavItem(props: Props<string | null>): ReactNode {
     }
 
     const { href, label } = props;
+
     return (
-        <Button variant="text" color="inherit" href={href}>
+        <Button color="inherit" href={href} variant="text">
             {label}
         </Button>
     );

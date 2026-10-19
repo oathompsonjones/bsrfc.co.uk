@@ -35,7 +35,7 @@ export const viewport: Viewport = {
  * @param props.children - The children to render.
  * @returns A page wrapper.
  */
-export default function Layout({ children }: { children: ReactNode; }): ReactNode {
+export default function Layout({ children }: { readonly children: ReactNode; }): ReactNode {
     return (
         <html lang="en">
             <body className={inter.className}>

@@ -1,7 +1,18 @@
-import { Card, CardContent, Divider, Typography } from "@mui/material";
-import type { ReactNode } from "react";
+"use client";
 
-type Team = string | { name: string; rank: string; };
+import { Box, Card, CardContent, Divider, Typography } from "@mui/material";
+import Link from "next/link";
+import type { ReactNode } from "react";
+import type { Theme } from "@mui/material";
+import { useCallback } from "react";
+
+type NonNullableReactNode = NonNullable<ReactNode>;
+
+type Team = {
+    link?: string;
+    title: NonNullableReactNode;
+    subtitle?: NonNullableReactNode;
+};
 
 /**
  * A section of teams under a centred heading, arranged in caller-defined rows.
@@ -10,49 +21,64 @@ type Team = string | { name: string; rank: string; };
  * @param props.title - The section heading.
  * @returns A heading with the section's teams beneath it.
  */
-export function TeamSection({ teams = [], title }: { teams?: Team[][]; title: string; }): ReactNode {
+export function TeamSection({ teams, title }: { readonly teams?: Team[][]; readonly title: string; }): ReactNode {
+    const cardSx = useCallback((theme: Theme) => ({
+        alignItems: "center",
+        borderBottom: `5px solid ${theme.palette.secondary.main}`,
+        display: "flex",
+        gridColumn: "auto",
+        justifyContent: "center",
+        minHeight: 104,
+        textAlign: "center",
+    }), []);
+
     return (
         <section>
             <Divider />
-            <Typography variant="h2" className="text-center">{title}</Typography>
-            <div className="grid gap-4">
-                {teams.map((row, index) => (
-                    <div
+            <Typography sx={{ textAlign: "center" }} variant="h2">
+                {title}
+            </Typography>
+            <Divider />
+            <Box sx={{ display: "grid", gap: 2 }}>
+                {teams?.map((row, index) => (
+                    <Box
                         key={index}
-                        className="mx-auto grid gap-4 text-center"
-                        style={{
+                        sx={{
+                            display: "grid",
+                            gap: 2,
                             gridColumn: "auto",
                             gridTemplateColumns: `repeat(${row.length}, minmax(0, 1fr))`,
+                            marginX: "auto",
+                            textAlign: "center",
                             width: `${row.length / 3 * 100}%`,
                         }}
                     >
-                        {row.map((team) => (
+                        {row.map((team, i) => (
                             <Card
-                                key={typeof team === "string" ? team : `${team.rank}-${team.name}`}
-                                sx={{
-                                    alignItems: "center",
-                                    display: "flex",
-                                    gridColumn: "auto",
-                                    justifyContent: "center",
-                                    minHeight: 104,
-                                    textAlign: "center",
-                                }}
+                                component={Link}
+                                href={team.link ?? "#"}
+                                key={i}
+                                sx={cardSx}
                             >
                                 <CardContent sx={{ paddingBottom: 2, width: "100%" }}>
-                                    {typeof team === "string" ? (
-                                        <Typography variant="h3">{team}</Typography>
-                                    ) : (
-                                        <>
-                                            <Typography variant="h3">{team.name}</Typography>
-                                            <Typography variant="body2" sx={{ color: "text.secondary" }}>{team.rank}</Typography>
-                                        </>
-                                    )}
+                                    {typeof team !== "object" || !("subtitle" in team)
+                                        ? (
+                                            <Typography variant="h3">{team.title}</Typography>
+                                        )
+                                        : (
+                                            <>
+                                                <Typography variant="h3">{team.title}</Typography>
+                                                <Typography sx={{ color: "text.secondary" }} variant="body2">
+                                                    {team.subtitle}
+                                                </Typography>
+                                            </>
+                                        )}
                                 </CardContent>
                             </Card>
                         ))}
-                    </div>
+                    </Box>
                 ))}
-            </div>
+            </Box>
         </section>
     );
 }

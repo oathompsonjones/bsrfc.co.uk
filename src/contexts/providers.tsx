@@ -9,7 +9,7 @@ import { ThemeContextProvider } from "./theme";
  * @param props.children - The children to render.
  * @returns The context providers.
  */
-export function Providers({ children }: { children: ReactNode; }): ReactNode {
+export function Providers({ children }: { readonly children: ReactNode; }): ReactNode {
     return (
         <ThemeContextProvider>
             {children}

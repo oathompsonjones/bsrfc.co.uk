@@ -1,17 +1,18 @@
 "use client";
 
-import { AppBar, Box, Drawer, IconButton, List, ListItemButton, ListItemText, Toolbar } from "@mui/material";
+import { AppBar, Box, Drawer, IconButton, List, Toolbar } from "@mui/material";
+import { MobileNavItem, type NavItemData } from "./mobileNavItem";
+import { useCallback, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import MenuIcon from "@mui/icons-material/Menu";
 import Image from "next/image";
 import Link from "next/link";
+import MenuIcon from "@mui/icons-material/Menu";
 import { NavItem } from "./navItem";
 import type { ReactNode } from "react";
 import { useNavScroll } from "hooks/useNavScroll";
-import { Fragment, useState } from "react";
 
 const logoSize = 150;
-const mobileNavItems: { href: string; label: string; links?: { href: string; label: string; }[]; }[] = [
+const navItems: NavItemData[] = [
     { href: "/", label: "Home" },
     {
         href: "/club",
@@ -33,7 +34,7 @@ const mobileNavItems: { href: string; label: string; links?: { href: string; lab
             { href: "/teams/women", label: "Women" },
             { href: "/teams/colts", label: "Colts" },
             { href: "/teams/youth", label: "Youth" },
-            { href: "/teams/womens-youth", label: "Women's Youth" },
+            { href: "/teams/girls", label: "Girls" },
             { href: "/teams/minis", label: "Minis" },
             { href: "/teams/touch", label: "Touch" },
         ],
@@ -75,135 +76,111 @@ const mobileNavItems: { href: string; label: string; links?: { href: string; lab
  * @returns The page header.
  */
 export function Header(): ReactNode {
-    const menuState = useState<string | null>(null);
+    const [menu, setMenu] = useState<string | null>(null);
     const { navHidden, navJs } = useNavScroll();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [expandedItem, setExpandedItem] = useState<string | null>(null);
+
+    const openMobileMenu = useCallback(() => setMobileMenuOpen(true), []);
+    const closeMobileMenu = useCallback(() => setMobileMenuOpen(false), []);
+    const toggleExpandedItem = useCallback((href: string) => {
+        setExpandedItem((current) => (current === href ? null : href));
+    }, []);
 
     return (
         <>
             <AppBar
+                className="site-header"
                 component="header"
-                position="static"
-                enableColorOnDark
                 elevation={0}
-                className="site-header p-4 pb-0"
+                enableColorOnDark
+                position="static"
             >
-                <div className="site-logo flex items-start justify-center" style={{ height: logoSize }}>
+                <Box
+                    className="site-logo"
+                    sx={{ alignItems: "flex-start", display: "flex", height: logoSize, justifyContent: "center" }}
+                >
                     <Image
-                        src="/logo.svg"
                         alt="Logo"
-                        width={logoSize}
                         height={logoSize}
+                        src="/logo.svg"
+                        width={logoSize}
                     />
-                </div>
+                </Box>
             </AppBar>
             <AppBar
-                component="nav"
-                position="sticky"
-                enableColorOnDark
-                elevation={0}
                 className="site-nav"
+                component="nav"
                 data-js={navJs ? "" : undefined}
+                elevation={0}
+                enableColorOnDark
+                position="sticky"
                 style={{
                     boxShadow: "0 4px 6px -2px rgb(0 0 0 / 0.4)",
-                    ...navJs && { transform: navHidden ? "translateY(calc(-100% - 12px))" : "none" }
+                    ...navJs && { transform: navHidden ? "translateY(calc(-100% - 12px))" : "none" },
                 }}
             >
-                <Toolbar className="flex flex-row flex-wrap gap-4 justify-center full-width" sx={{ display: { xs: "none", lg: "flex" } }}>
-                    <NavItem label="Home" href="/" />
-
-                    <NavItem label="Club" href="/club" menuState={menuState}>
-                        <Link href="/club/about">About the Club</Link>
-                        <Link href="/club/committee">Committee</Link>
-                        <Link href="/club/history">Club History</Link>
-                        <Link href="/club/contact">Contact</Link>
-                        <Link href="/club/safeguarding">Safeguarding & Policies</Link>
-                        <Link href="/club/find-us">Find Us</Link>
-                    </NavItem>
-
-                    <NavItem label="Teams" href="/teams" menuState={menuState}>
-                        <Link href="/teams/men">Men</Link>
-                        <Link href="/teams/women">Women</Link>
-                        <Link href="/teams/colts">Colts</Link>
-                        <Link href="/teams/youth">Youth</Link>
-                        <Link href="/teams/womens-youth">Women's Youth</Link>
-                        <Link href="/teams/minis">Minis</Link>
-                        <Link href="/teams/touch">Touch</Link>
-                    </NavItem>
-
-                    <NavItem label="News & Media" href="/news" menuState={menuState}>
-                        <Link href="/news">News</Link>
-                        <Link href="/news/match-reports">Match Reports</Link>
-                        <Link href="/gallery">Gallery</Link>
-                        <Link href="/highlights">Highlights</Link>
-                    </NavItem>
-
-                    <NavItem label="Membership" href="/membership" menuState={menuState}>
-                        <Link href="/membership/join">Join the Club</Link>
-                        <Link href="/membership">Membership Information</Link>
-                        <Link href="/membership/volunteers">Volunteers</Link>
-                    </NavItem>
-
-                    <NavItem label="Events" href="/events" menuState={menuState}>
-                        <Link href="/events">Upcoming Events</Link>
-                        <Link href="/events/clubhouse">Clubhouse</Link>
-                        <Link href="/events/venue-hire">Venue Hire</Link>
-                    </NavItem>
-
-                    <NavItem label="Shop" href="https://bsrfcshop.co.uk" />
-
-                    <NavItem label="Sponsors" href="https://bsrfc.club" />
+                <Toolbar
+                    className="full-width"
+                    sx={{
+                        display: { lg: "flex", xs: "none" },
+                        flexDirection: "row",
+                        flexWrap: "wrap",
+                        gap: 2,
+                        justifyContent: "center",
+                    }}
+                >
+                    {navItems.map(({ href, label, links }) => (
+                        links
+                            ? (
+                                <NavItem href={href} key={href} label={label} menuState={[menu, setMenu]}>
+                                    {links.map((link) => <Link href={link.href} key={link.href}>{link.label}</Link>)}
+                                </NavItem>
+                            )
+                            : <NavItem href={href} key={href} label={label} />
+                    ))}
                 </Toolbar>
-                <Toolbar className="full-width" sx={{ display: { xs: "flex", lg: "none" }, justifyContent: "flex-end" }}>
-                    <IconButton
-                        aria-label="Open navigation menu"
-                        aria-expanded={mobileMenuOpen}
-                        color="inherit"
-                        onClick={() => setMobileMenuOpen(true)}
-                    >
+                <Toolbar
+                    className="full-width"
+                    sx={{
+                        display: { lg: "none", xs: "flex" },
+                        justifyContent: "flex-end",
+                    }}
+                >
+                    <IconButton color="inherit" onClick={openMobileMenu}>
                         <MenuIcon />
                     </IconButton>
                 </Toolbar>
             </AppBar>
             <Drawer
                 anchor="right"
+                onClose={closeMobileMenu}
                 open={mobileMenuOpen}
-                onClose={() => setMobileMenuOpen(false)}
-                slotProps={{ paper: { sx: { backgroundColor: "primary.main", width: "min(88vw, 360px)" } } }}
+                slotProps={{
+                    paper: {
+                        sx: {
+                            backgroundColor: "primary.main",
+                            color: "common.white",
+                            width: "min(88vw, 360px)",
+                        },
+                    },
+                }}
             >
                 <Box role="presentation">
                     <Toolbar sx={{ justifyContent: "flex-end" }}>
-                        <IconButton aria-label="Close navigation menu" color="inherit" onClick={() => setMobileMenuOpen(false)}>
+                        <IconButton color="inherit" onClick={closeMobileMenu}>
                             <CloseIcon />
                         </IconButton>
                     </Toolbar>
                     <List disablePadding>
-                        {mobileNavItems.map((item) => (
-                            <Fragment key={item.href}>
-                                <ListItemButton
-                                    component={Link}
-                                    href={item.href}
-                                    onClick={() => setMobileMenuOpen(false)}
-                                    sx={{ borderBottom: "1px solid rgba(255, 255, 255, 0.2)", color: "common.white" }}
-                                >
-                                    <ListItemText primary={item.label} />
-                                </ListItemButton>
-                                {item.links && (
-                                    <List disablePadding>
-                                        {item.links.map((link) => (
-                                            <ListItemButton
-                                                key={link.href}
-                                                component={Link}
-                                                href={link.href}
-                                                onClick={() => setMobileMenuOpen(false)}
-                                                sx={{ pl: 4, color: "common.white" }}
-                                            >
-                                                <ListItemText primary={link.label} />
-                                            </ListItemButton>
-                                        ))}
-                                    </List>
-                                )}
-                            </Fragment>
+                        {navItems.map((item) => (
+                            <MobileNavItem
+                                expanded={expandedItem === item.href}
+                                item={item}
+                                key={item.href}
+                                onNavigate={closeMobileMenu}
+                                onToggle={toggleExpandedItem}
+                            />
                         ))}
                     </List>
                 </Box>

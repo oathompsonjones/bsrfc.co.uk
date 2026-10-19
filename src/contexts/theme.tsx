@@ -4,18 +4,25 @@ import { CssBaseline, StyledEngineProvider, ThemeProvider, createTheme, responsi
 import DefaultPropsProvider from "@mui/material/DefaultPropsProvider";
 import type { ReactNode } from "react";
 
+const BLUE = "#003ca5";
+const PINK = "#e01583";
+const RED = "#e80029";
+const WHITE = "#ffffff";
+const BLACK = "#121212";
+
 /**
  * Provides the theme to the application.
  * @param props - The properties of the component.
  * @param props.children - The children to render.
  * @returns The theme provider to wrap the application in.
  */
-export function ThemeContextProvider({ children }: { children: ReactNode; }): ReactNode {
+export function ThemeContextProvider({ children }: { readonly children: ReactNode; }): ReactNode {
     // Create the full theme.
     const basePalette = {
-        common: { black: "#121212", white: "#efefef" },
-        primary: { main: "#003ca5" },
-        secondary: { main: "#c7c7c7" },
+        common: { black: BLACK, white: WHITE },
+        primary: { main: BLUE },
+        secondary: { main: RED },
+        tertiary: { main: PINK },
     };
     const theme = responsiveFontSizes(createTheme({
         components: {
@@ -87,7 +94,8 @@ export function ThemeContextProvider({ children }: { children: ReactNode; }): Re
                     MuiFab: { color: "secondary" },
                     MuiPaper: { elevation: 5 },
                     MuiTextField: { fullWidth: true, required: true, variant: "filled" },
-                }}>
+                }}
+                >
                     <CssBaseline enableColorScheme />
                     {children}
                 </DefaultPropsProvider>
