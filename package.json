@@ -14,27 +14,27 @@
     "author": "oathompsonjones",
     "license": "MIT",
     "devDependencies": {
-        "@oathompsonjones/eslint-config": "^1.5.5",
-        "@oathompsonjones/ts-config": "^0.0.35",
-        "@types/node": "^24.3.1",
-        "@types/react": "19.1.12",
-        "@types/react-dom": "19.1.9",
-        "typescript": "^5.9.2"
+        "@oathompsonjones/eslint-config": "^1.5.9",
+        "@oathompsonjones/ts-config": "^1.0.0",
+        "@types/node": "^26.6.5",
+        "@types/react": "19.3.0",
+        "@types/react-dom": "19.3.0",
+        "typescript": "^7.0.2"
     },
     "dependencies": {
         "@emotion/react": "^11.14.0",
         "@emotion/styled": "^11.14.1",
-        "@mui/icons-material": "^7.3.2",
-        "@mui/lab": "7.0.0-beta.17",
-        "@mui/material": "^7.3.2",
+        "@mui/icons-material": "^9.5.0",
+        "@mui/lab": "9.0.0-beta.10",
+        "@mui/material": "^9.5.0",
         "@svgr/webpack": "^8.1.0",
-        "@tailwindcss/postcss": "^4.1.13",
-        "next": "15.5.3",
-        "postcss": "^8.5.6",
-        "react": "19.1.1",
-        "react-dom": "19.1.1",
-        "sharp": "^0.34.3",
-        "tailwindcss": "^4.1.13"
+        "@tailwindcss/postcss": "^4.3.3",
+        "next": "16.4.2",
+        "postcss": "^8.5.31",
+        "react": "19.3.1",
+        "react-dom": "19.3.1",
+        "sharp": "^0.35.5",
+        "tailwindcss": "^4.3.3"
     },
     "packageManager": "pnpm@9.9.0+sha512.60c18acd138bff695d339be6ad13f7e936eea6745660d4cc4a776d5247c540d0edee1a563695c183a66eb917ef88f2b4feb1fc25f32a7adcadc7aaf3438e99c1"
 }
