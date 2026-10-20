@@ -3,10 +3,10 @@
 import { ArrowForward, Place } from "@mui/icons-material";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { alpha, useTheme } from "@mui/material/styles";
-import Image from "next/image";
+import { HeroImage } from "./heroImage";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import firstXv from "assets/images/1st-xv-26-27.jpg";
+import { RotatingText } from "./rotatingText";
 
 /**
  * The first XV image hero on the homepage.
@@ -30,28 +30,15 @@ export function HomeHero(): ReactNode {
                 bgcolor: theme.palette.common.black,
                 color: "common.white",
                 display: "flex",
-                minHeight: { md: "min(44rem, 76svh)", xs: "38rem" },
+                // Fills the viewport below the header (166px) and nav (64px, or 56px on the smallest screens).
+                minHeight: { sm: "calc(100svh - 230px)", xs: "calc(100svh - 222px)" },
                 mt: -2,
                 overflow: "hidden",
                 position: "relative",
             }}
         >
-            <Image
-                alt="BSRFC first XV, 2026–27 season"
-                fill
-                priority
-                sizes="100vw"
-                src={firstXv}
-                style={{ objectFit: "cover", objectPosition: "center 38%" }}
-            />
-            <Box
-                sx={{
-                    background: heroOverlay,
-                    inset: 0,
-                    pointerEvents: "none",
-                    position: "absolute",
-                }}
-            />
+            <HeroImage />
+            <Box sx={{ background: heroOverlay, inset: 0, pointerEvents: "none", position: "absolute" }} />
             <Box
                 sx={{
                     maxWidth: "70rem",
@@ -67,33 +54,15 @@ export function HomeHero(): ReactNode {
                     <Box sx={{ bgcolor: theme.palette.tertiary.main, height: 2, width: 32 }} />
                     <Typography
                         component="p"
-                        sx={{
-                            color: "common.white",
-                            fontSize: "0.8rem",
-                            fontWeight: 700,
-                            letterSpacing: "0.18em",
-                        }}
+                        sx={{ color: "common.white", fontSize: "0.8rem", fontWeight: 700, letterSpacing: "0.18em" }}
                         variant="overline"
                     >
                         BISHOP&apos;S STORTFORD RUGBY FOOTBALL CLUB
                     </Typography>
                 </Stack>
-                <Typography
-                    component="h1"
-                    sx={{
-                        color: "common.white",
-                        fontSize: { md: "clamp(4rem, 7.5vw, 6.5rem)", xs: "clamp(3.2rem, 13vw, 4.5rem)" },
-                        fontWeight: 800,
-                        letterSpacing: "-0.055em",
-                        lineHeight: 0.98,
-                        maxWidth: "14ch",
-                    }}
-                    variant="h1"
-                >
-                    One club.
-                    <br />
-                    One community.
-                </Typography>
+
+                <RotatingText />
+
                 <Typography
                     sx={{
                         color: alpha(theme.palette.common.white, 0.88),
@@ -107,6 +76,7 @@ export function HomeHero(): ReactNode {
                     Rugby for every age and ability. Find your team, meet your community and be part of
                     BSRFC.
                 </Typography>
+
                 <Stack direction={{ sm: "row", xs: "column" }} spacing={1.5} sx={{ mt: 4, width: "fit-content" }}>
                     <Button
                         component={Link}
@@ -137,28 +107,6 @@ export function HomeHero(): ReactNode {
                         Find the club
                     </Button>
                 </Stack>
-            </Box>
-            <Box
-                sx={{
-                    borderLeft: `2px solid ${theme.palette.tertiary.main}`,
-                    bottom: 2.5,
-                    display: { md: "block", xs: "none" },
-                    mb: 2,
-                    p: 2,
-                    position: "absolute",
-                    right: "max(3rem, calc((100vw - 70rem) / 2))",
-                    zIndex: 1,
-                }}
-            >
-                <Typography
-                    sx={{ color: "common.white", fontSize: "0.7rem", letterSpacing: "0.16em" }}
-                    variant="overline"
-                >
-                    FIRST XV
-                </Typography>
-                <Typography sx={{ color: "common.white", fontWeight: 700 }} variant="h6">
-                    2026 / 27
-                </Typography>
             </Box>
         </Box>
     );
