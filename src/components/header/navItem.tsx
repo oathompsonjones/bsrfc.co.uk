@@ -4,6 +4,7 @@ import { Button, ButtonGroup, Menu, MenuItem } from "@mui/material";
 import type { Dispatch, ReactNode, SetStateAction } from "react";
 import { useCallback, useEffect, useRef } from "react";
 import { KeyboardArrowDown } from "@mui/icons-material";
+import OpenInNew from "@mui/icons-material/OpenInNew";
 
 type Props<S> = {
     children: ReactNode;
@@ -87,7 +88,12 @@ export function NavItem(props: Props<string | null>): ReactNode {
     const { href, label } = props;
 
     return (
-        <Button color="inherit" href={href} variant="text">
+        <Button
+            color="inherit"
+            endIcon={(/^https?:\/\//u).test(href) ? <OpenInNew fontSize="inherit" /> : undefined}
+            href={href}
+            variant="text"
+        >
             {label}
         </Button>
     );

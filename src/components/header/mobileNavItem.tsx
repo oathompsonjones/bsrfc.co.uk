@@ -3,6 +3,7 @@ import { memo, useCallback } from "react";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Link from "next/link";
+import OpenInNew from "@mui/icons-material/OpenInNew";
 import type { ReactNode } from "react";
 
 export type NavItemData = {
@@ -50,6 +51,7 @@ function MobileNavItemBase({ expanded, item, onNavigate, onToggle }: Props): Rea
                     sx={{ color: "common.white" }}
                 >
                     <ListItemText primary={item.label} />
+                    {(/^https?:\/\//u).test(item.href) ? <OpenInNew fontSize="small" /> : null}
                 </ListItemButton>
             </ListItem>
             {item.links
