@@ -2,7 +2,7 @@ import "styles/global.css";
 import "styles/layout.css";
 import "styles/background.css";
 import type { Metadata, Viewport } from "next";
-import { Footer } from "components/footer";
+import { Footer } from "components/footer/footer";
 import { Header } from "components/header/header";
 import { Inter } from "next/font/google";
 import { Providers } from "contexts/providers";
