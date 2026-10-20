@@ -87,13 +87,13 @@ export function HomeHero(): ReactNode {
                         fontWeight: 800,
                         letterSpacing: "-0.055em",
                         lineHeight: 0.98,
-                        maxWidth: "12ch",
+                        maxWidth: "14ch",
                     }}
                     variant="h1"
                 >
                     One club.
                     <br />
-                    All in.
+                    One community.
                 </Typography>
                 <Typography
                     sx={{
@@ -126,7 +126,7 @@ export function HomeHero(): ReactNode {
                     <Button
                         component={Link}
                         endIcon={<Place />}
-                        href="/club/find-us"
+                        href="/find-us"
                         sx={{
                             border: `1px solid ${alpha(theme.palette.common.white, 0.65)}`,
                             color: "common.white",

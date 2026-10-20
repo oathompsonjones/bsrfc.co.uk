@@ -112,6 +112,7 @@ export function Header(): ReactNode {
                         sx={{
                             color: "common.white",
                             fontSize: { sm: "clamp(2.5rem, 5vw, 4rem)", xs: "2rem" },
+                            fontStyle: "italic",
                             fontWeight: 900,
                             left: { sm: "-1rem", xs: 0 },
                             lineHeight: 1,
