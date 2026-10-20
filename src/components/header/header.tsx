@@ -111,10 +111,11 @@ export function Header(): ReactNode {
                         component="p"
                         sx={{
                             color: "common.white",
-                            fontSize: { sm: "clamp(2.5rem, 5vw, 4rem)", xs: "2rem" },
+                            display: { lg: "block", xs: "none" },
+                            fontSize: "clamp(2.5rem, 5vw, 4rem)",
                             fontStyle: "italic",
                             fontWeight: 900,
-                            left: { sm: "-1rem", xs: 0 },
+                            left: "-1rem",
                             lineHeight: 1,
                             m: 0,
                             position: "absolute",
@@ -169,9 +170,15 @@ export function Header(): ReactNode {
                     className="full-width"
                     sx={{
                         display: { lg: "none", xs: "flex" },
-                        justifyContent: "flex-end",
+                        justifyContent: "space-between",
                     }}
                 >
+                    <Box
+                        component="p"
+                        sx={{ fontSize: "1.5rem", fontStyle: "italic", fontWeight: 900, lineHeight: 1, m: 0 }}
+                    >
+                        BETA
+                    </Box>
                     <IconButton color="inherit" onClick={openMobileMenu}>
                         <MenuIcon />
                     </IconButton>
