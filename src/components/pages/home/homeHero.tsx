@@ -45,7 +45,6 @@ export function HomeHero(): ReactNode {
                 style={{ objectFit: "cover", objectPosition: "center 38%" }}
             />
             <Box
-                aria-hidden="true"
                 sx={{
                     background: heroOverlay,
                     inset: 0,
@@ -144,6 +143,7 @@ export function HomeHero(): ReactNode {
                     borderLeft: `2px solid ${theme.palette.tertiary.main}`,
                     bottom: 2.5,
                     display: { md: "block", xs: "none" },
+                    mb: 2,
                     p: 2,
                     position: "absolute",
                     right: "max(3rem, calc((100vw - 70rem) / 2))",
