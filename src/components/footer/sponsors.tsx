@@ -151,14 +151,7 @@ export function Sponsors(): ReactNode {
     }, []);
 
     return (
-        <Box
-            ref={containerRef}
-            sx={{
-                height: "100px",
-                overflow: "hidden",
-                width: "100%",
-            }}
-        >
+        <Box ref={containerRef} sx={{ height: "100px", overflow: "hidden", width: "100%" }}>
             <Stack
                 direction="row"
                 sx={{
@@ -171,9 +164,7 @@ export function Sponsors(): ReactNode {
                     },
                     "@media (prefers-reduced-motion: reduce)": { animation: "none" },
                     /* eslint-enable @typescript-eslint/naming-convention */
-                    animation: sequenceWidth > 0
-                        ? "scrollSponsors 180s linear infinite"
-                        : "none",
+                    animation: sequenceWidth > 0 ? "scrollSponsors 180s linear infinite" : "none",
                     height: "100%",
                     width: "max-content",
                 }}
