@@ -21,7 +21,7 @@ export function Copyright(): ReactNode {
     ];
 
     return (
-        <>
+        <Stack>
             <Stack
                 direction={{ sm: "row", xs: "column" }}
                 divider={
@@ -41,6 +41,6 @@ export function Copyright(): ReactNode {
             <Typography variant="caption">
                 Website designed & developed by <b><Link href="https://oathompsonjones.co.uk">Oliver Jones</Link></b>.
             </Typography>
-        </>
+        </Stack>
     );
 }

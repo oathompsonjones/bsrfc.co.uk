@@ -35,7 +35,7 @@ export function ExtraLinks(): ReactNode {
             columns={{ sm: 3, xs: 1 }}
             container
             // eslint-disable-next-line @typescript-eslint/naming-convention
-            sx={{ "& a": { whiteSpace: "nowrap" }, py: 5 }}
+            sx={{ "& a": { whiteSpace: "nowrap" } }}
         >
             {columns.map((column, index) => (
                 <Grid
