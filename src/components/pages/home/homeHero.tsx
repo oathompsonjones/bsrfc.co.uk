@@ -3,10 +3,15 @@
 import { ArrowForward, Place } from "@mui/icons-material";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { alpha, useTheme } from "@mui/material/styles";
+import { useEffect, useState } from "react";
 import { HeroImage } from "./heroImage";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { RotatingText } from "./rotatingText";
+
+const intervalMs = 5000;
+const transitionMs = 1500;
+const transition = `transform ${transitionMs}ms ease`;
 
 /**
  * The first XV image hero on the homepage.
@@ -20,6 +25,16 @@ export function HomeHero(): ReactNode {
         `${alpha(theme.palette.common.black, 0.07)} 100%),`,
         `linear-gradient(0deg, ${alpha(theme.palette.common.black, 0.42)}, transparent 58%)`,
     ].join(" ");
+
+    const [tick, setTick] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTick((previous) => previous + 1);
+        }, intervalMs + transitionMs);
+
+        return (): void => clearInterval(interval);
+    }, []);
 
     return (
         <Box
@@ -37,7 +52,7 @@ export function HomeHero(): ReactNode {
                 position: "relative",
             }}
         >
-            <HeroImage />
+            <HeroImage tick={tick} transition={transition} />
             <Box sx={{ background: heroOverlay, inset: 0, pointerEvents: "none", position: "absolute" }} />
             <Box
                 sx={{
@@ -61,7 +76,7 @@ export function HomeHero(): ReactNode {
                     </Typography>
                 </Stack>
 
-                <RotatingText />
+                <RotatingText tick={tick} transition={transition} />
 
                 <Typography
                     sx={{
