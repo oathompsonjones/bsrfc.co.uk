@@ -90,7 +90,7 @@ export function HeroImage({ tick, transition }: Readonly<{
                     p: 2,
                     perspective: "600px",
                     position: "absolute",
-                    right: "max(3rem, calc((100vw - 70rem) / 2))",
+                    right: "max(3rem, calc((100vw - 90rem) / 2))",
                     zIndex: 1,
                 }}
             >
@@ -114,22 +114,12 @@ export function HeroImage({ tick, transition }: Readonly<{
                                 }}
                             >
                                 <Typography
-                                    sx={{
-                                        color: "common.white",
-                                        fontSize: "0.7rem",
-                                        letterSpacing: "0.16em",
-                                    }}
+                                    sx={{ color: "common.white", fontSize: "0.7rem", letterSpacing: "0.16em" }}
                                     variant="overline"
                                 >
                                     {title}
                                 </Typography>
-                                <Typography
-                                    sx={{
-                                        color: "common.white",
-                                        fontWeight: 700,
-                                    }}
-                                    variant="h6"
-                                >
+                                <Typography sx={{ color: "common.white", fontWeight: 700 }} variant="h6">
                                     {subtitle}
                                 </Typography>
                             </Box>
