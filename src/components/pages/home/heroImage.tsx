@@ -83,7 +83,7 @@ export function HeroImage({ tick, transition }: Readonly<{
 
             <Box
                 sx={{
-                    borderLeft: `2px solid ${theme.palette.tertiary.main}`,
+                    borderLeft: `2px solid ${theme.palette.secondary.main}`,
                     bottom: 2.5,
                     display: { md: "block", xs: "none" },
                     mb: 2,

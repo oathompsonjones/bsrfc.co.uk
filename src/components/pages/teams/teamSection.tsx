@@ -25,7 +25,7 @@ export function TeamSection({ teams, title }: { readonly teams?: Team[][]; reado
     return (
         <Box component="section" sx={{ mt: { md: 7, xs: 5 } }}>
             <Box sx={{ alignItems: "center", display: "flex", gap: 2, mb: 2.5 }}>
-                <Box sx={{ bgcolor: theme.palette.tertiary.main, height: 2, width: 28 }} />
+                <Box sx={{ bgcolor: theme.palette.secondary.main, height: 2, width: 28 }} />
                 <Typography
                     component="h2"
                     sx={{ color: "common.white", fontSize: { md: "2rem", xs: "1.6rem" }, fontWeight: 750 }}
@@ -51,7 +51,7 @@ export function TeamSection({ teams, title }: { readonly teams?: Team[][]; reado
                             sx={{
                                 bgcolor: "background.paper",
                                 border: `1px solid ${cardBorder}`,
-                                borderTop: `3px solid ${theme.palette.tertiary.main}`,
+                                borderTop: `3px solid ${theme.palette.secondary.main}`,
                                 color: "common.white",
                                 flex: "1 1 10rem",
                                 gridColumn: "auto",

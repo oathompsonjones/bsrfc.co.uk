@@ -65,7 +65,7 @@ export function HomeHero(): ReactNode {
                 }}
             >
                 <Stack direction="row" spacing={1.25} sx={{ alignItems: "center", mb: 2.5 }}>
-                    <Box sx={{ bgcolor: theme.palette.tertiary.main, height: 2, width: 32 }} />
+                    <Box sx={{ bgcolor: theme.palette.secondary.main, height: 2, width: 32 }} />
                     <Typography
                         component="p"
                         sx={{ color: "common.white", fontSize: "0.8rem", fontWeight: 700, letterSpacing: "0.18em" }}
@@ -97,7 +97,7 @@ export function HomeHero(): ReactNode {
                         endIcon={<ArrowForward />}
                         href="/teams"
                         sx={{
-                            bgcolor: theme.palette.tertiary.main,
+                            bgcolor: theme.palette.secondary.main,
                             color: "common.white",
                             fontWeight: 700,
                             px: 3,

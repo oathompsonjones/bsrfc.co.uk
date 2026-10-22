@@ -12,27 +12,9 @@ import type { ReactNode } from "react";
 
 const BLUE = "#003ca5";
 const PINK = "#e01583";
-const RED = "#e80029";
 const WHITE = "#ffffff";
 const BLACK = "#121212";
 const PAPER = "#00194b";
-
-declare module "@mui/material/styles" {
-    // Palette customization uses interfaces so MUI's theme types can be augmented.
-    // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
-    interface Palette {
-        tertiary: {
-            main: string;
-        };
-    }
-
-    // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
-    interface PaletteOptions {
-        tertiary?: {
-            main: string;
-        };
-    }
-}
 
 /**
  * Provides the theme to the application.
@@ -45,8 +27,7 @@ export function ThemeContextProvider({ children }: { readonly children: ReactNod
     const basePalette = {
         common: { black: BLACK, white: WHITE },
         primary: { main: BLUE },
-        secondary: { main: RED },
-        tertiary: { main: PINK },
+        secondary: { main: PINK },
     };
     const theme = responsiveFontSizes(createTheme({
         components: {

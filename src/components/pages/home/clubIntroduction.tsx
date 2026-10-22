@@ -31,7 +31,7 @@ export function ClubIntroduction(): ReactNode {
                         <Typography
                             component="p"
                             sx={{
-                                color: theme.palette.tertiary.main,
+                                color: theme.palette.secondary.main,
                                 fontSize: "0.75rem",
                                 fontWeight: 700,
                                 letterSpacing: "0.16em",

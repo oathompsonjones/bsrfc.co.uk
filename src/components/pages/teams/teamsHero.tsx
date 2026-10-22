@@ -61,7 +61,7 @@ export function TeamsHero(): ReactNode {
             >
                 <Typography
                     component="p"
-                    sx={{ color: theme.palette.tertiary.main, fontWeight: 700, letterSpacing: "0.16em" }}
+                    sx={{ color: theme.palette.secondary.main, fontWeight: 700, letterSpacing: "0.16em" }}
                     variant="overline"
                 >
                     #ONECLUB
