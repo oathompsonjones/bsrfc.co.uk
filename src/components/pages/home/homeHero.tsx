@@ -56,9 +56,8 @@ export function HomeHero(): ReactNode {
             <Box sx={{ background: heroOverlay, inset: 0, pointerEvents: "none", position: "absolute" }} />
             <Box
                 sx={{
+                    m: "auto",
                     maxWidth: "70rem",
-                    mx: "auto",
-                    pb: { md: 10, xs: 7 },
                     position: "relative",
                     px: { md: 5, xs: 3 },
                     width: "100%",
