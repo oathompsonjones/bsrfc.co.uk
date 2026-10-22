@@ -1,15 +1,21 @@
 "use client";
 
 import { AppBar, Box, Drawer, IconButton, List, Toolbar } from "@mui/material";
-import { MobileNavItem, type NavItemData } from "./mobileNavItem";
 import { useCallback, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import Image from "next/image";
 import Link from "next/link";
 import MenuIcon from "@mui/icons-material/Menu";
+import { MobileNavItem } from "./mobileNavItem";
 import { NavItem } from "./navItem";
 import type { ReactNode } from "react";
 import { useNavScroll } from "hooks/useNavScroll";
+
+export type NavItemData = {
+    href: string;
+    label: string;
+    links?: Array<{ href: string; label: string; }>;
+};
 
 const logoSize = 150;
 const navItems: NavItemData[] = [

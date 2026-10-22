@@ -3,14 +3,9 @@ import { memo, useCallback } from "react";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Link from "next/link";
+import type { NavItemData } from "./header";
 import OpenInNew from "@mui/icons-material/OpenInNew";
 import type { ReactNode } from "react";
-
-export type NavItemData = {
-    href: string;
-    label: string;
-    links?: Array<{ href: string; label: string; }>;
-};
 
 type Props = {
     readonly expanded: boolean;
