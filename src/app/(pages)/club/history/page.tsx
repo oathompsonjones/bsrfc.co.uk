@@ -4,11 +4,11 @@ import type { ReactNode } from "react";
 const events = [
     {
         category: "Club origins",
-        description: "Bishop’s Stortford Rugby Football Club was founded in 1920, with its earliest matches played " +
+        description: "Bishop’s Stortford Rugby Football Club was founded in 1921, with its earliest matches played " +
             "at Dunmow Road. In 1928, the Club moved to its current home at Silver Leys, where generations of " +
             "players have since worn the blue and white with pride.",
         title: "A proud beginning",
-        year: "1920–1928",
+        year: "1921–1928",
     },
     {
         category: "Facilities",
@@ -71,7 +71,7 @@ const events = [
     {
         category: "Club heritage",
         description: "Bishop’s Stortford RFC reached its centenary, celebrating 100 years of rugby, community, and " +
-            "shared memories since the Club’s foundation in 1920.",
+            "shared memories since the Club’s foundation in 1921.",
         title: "One hundred years of rugby",
         year: "2020",
     },
@@ -126,7 +126,7 @@ export default function History(): ReactNode {
                         </Typography>
 
                         <Typography sx={{ fontWeight: 400, lineHeight: 1.7, maxWidth: 680, opacity: 0.9 }} variant="h6">
-                            From our beginnings in 1920 to the generations of players, volunteers, and supporters who
+                            From our beginnings in 1921 to the generations of players, volunteers, and supporters who
                             make Silver Leys home. Discover the milestones that have shaped Bishop&apos;s Stortford RFC.
                         </Typography>
                     </Stack>
