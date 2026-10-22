@@ -23,7 +23,7 @@ export function CategoryMenuItem({ category, checked, onToggle }: CategoryMenuIt
 
     return (
         <MenuItem onClick={handleChange} value={category}>
-            <Checkbox checked={checked} />
+            <Checkbox checked={checked} color="secondary" />
             <ListItemText primary={category} />
         </MenuItem>
     );

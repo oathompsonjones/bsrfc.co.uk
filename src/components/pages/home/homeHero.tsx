@@ -18,12 +18,12 @@ const transition = `transform ${transitionMs}ms ease`;
  * @returns The homepage hero.
  */
 export function HomeHero(): ReactNode {
-    const theme = useTheme();
+    const { palette } = useTheme();
     const heroOverlay = [
-        `linear-gradient(90deg, ${alpha(theme.palette.common.black, 0.88)} 0%,`,
-        `${alpha(theme.palette.common.black, 0.6)} 43%,`,
-        `${alpha(theme.palette.common.black, 0.07)} 100%),`,
-        `linear-gradient(0deg, ${alpha(theme.palette.common.black, 0.42)}, transparent 58%)`,
+        `linear-gradient(90deg, ${alpha(palette.common.black, 0.88)} 0%,`,
+        `${alpha(palette.common.black, 0.6)} 43%,`,
+        `${alpha(palette.common.black, 0.07)} 100%),`,
+        `linear-gradient(0deg, ${alpha(palette.common.black, 0.42)}, transparent 58%)`,
     ].join(" ");
 
     const [tick, setTick] = useState(0);
@@ -42,7 +42,6 @@ export function HomeHero(): ReactNode {
             component="section"
             sx={{
                 alignItems: "flex-end",
-                bgcolor: theme.palette.common.black,
                 color: "common.white",
                 display: "flex",
                 // Fills the viewport below the header (166px) and nav (64px, or 56px on the smallest screens).
@@ -65,7 +64,7 @@ export function HomeHero(): ReactNode {
                 }}
             >
                 <Stack direction="row" spacing={1.25} sx={{ alignItems: "center", mb: 2.5 }}>
-                    <Box sx={{ bgcolor: theme.palette.secondary.main, height: 2, width: 32 }} />
+                    <Box sx={{ bgcolor: "secondary.main", height: 2, width: 32 }} />
                     <Typography
                         component="p"
                         sx={{ color: "common.white", fontSize: "0.8rem", fontWeight: 700, letterSpacing: "0.18em" }}
@@ -79,7 +78,7 @@ export function HomeHero(): ReactNode {
 
                 <Typography
                     sx={{
-                        color: alpha(theme.palette.common.white, 0.88),
+                        color: "lightgrey",
                         fontSize: { md: "1.2rem", xs: "1rem" },
                         lineHeight: 1.7,
                         maxWidth: "34rem",
@@ -93,11 +92,11 @@ export function HomeHero(): ReactNode {
 
                 <Stack direction={{ sm: "row", xs: "column" }} spacing={1.5} sx={{ mt: 4, width: "fit-content" }}>
                     <Button
+                        color="secondary"
                         component={Link}
                         endIcon={<ArrowForward />}
                         href="/teams"
                         sx={{
-                            bgcolor: theme.palette.secondary.main,
                             color: "common.white",
                             fontWeight: 700,
                             px: 3,
@@ -111,7 +110,7 @@ export function HomeHero(): ReactNode {
                         endIcon={<Place />}
                         href="/find-us"
                         sx={{
-                            border: `1px solid ${alpha(theme.palette.common.white, 0.65)}`,
+                            border: "1px solid lightgrey",
                             color: "common.white",
                             fontWeight: 700,
                             px: 3,

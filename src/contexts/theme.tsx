@@ -5,6 +5,7 @@ import {
     StyledEngineProvider,
     ThemeProvider,
     createTheme,
+    darken,
     responsiveFontSizes,
 } from "@mui/material";
 import DefaultPropsProvider from "@mui/material/DefaultPropsProvider";
@@ -14,7 +15,6 @@ const BLUE = "#003ca5";
 const PINK = "#e01583";
 const WHITE = "#ffffff";
 const BLACK = "#121212";
-const PAPER = "#00194b";
 
 /**
  * Provides the theme to the application.
@@ -63,7 +63,10 @@ export function ThemeContextProvider({ children }: { readonly children: ReactNod
         },
         cssVariables: { colorSchemeSelector: "class" },
         palette: {
-            background: { default: basePalette.primary.main, paper: PAPER },
+            background: {
+                default: basePalette.primary.main,
+                paper: darken(basePalette.primary.main, 0.4),
+            },
             ...basePalette,
         },
         typography: (palette) => ({

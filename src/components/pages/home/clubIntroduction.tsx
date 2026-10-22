@@ -1,7 +1,6 @@
 "use client";
 
 import { Box, Button, Stack, Typography } from "@mui/material";
-import { alpha, useTheme } from "@mui/material/styles";
 import { ArrowForward } from "@mui/icons-material";
 import { JoinCallout } from "components/pages/home/joinCallout";
 import Link from "next/link";
@@ -12,9 +11,6 @@ import type { ReactNode } from "react";
  * @returns The introduction section.
  */
 export function ClubIntroduction(): ReactNode {
-    const theme = useTheme();
-    const introCopyColor = alpha(theme.palette.common.white, 0.8);
-
     return (
         <Box className="full-width" component="section" sx={{ color: "common.white", py: { md: 10, xs: 7 } }}>
             <Box sx={{ maxWidth: "70rem", mx: "auto", px: { md: 5, xs: 3 }, width: "100%" }}>
@@ -31,7 +27,7 @@ export function ClubIntroduction(): ReactNode {
                         <Typography
                             component="p"
                             sx={{
-                                color: theme.palette.secondary.main,
+                                color: "secondary.main",
                                 fontSize: "0.75rem",
                                 fontWeight: 700,
                                 letterSpacing: "0.16em",
@@ -56,7 +52,7 @@ export function ClubIntroduction(): ReactNode {
                         </Typography>
                     </Box>
                     <Stack spacing={1.5} sx={{ maxWidth: "31rem" }}>
-                        <Typography sx={{ color: introCopyColor, lineHeight: 1.8 }} variant="body1">
+                        <Typography sx={{ color: "lightgrey", lineHeight: 1.8 }} variant="body1">
                             Whether you&apos;re ready to play, cheering from the touchline or looking to get involved,
                             there&apos;s a warm welcome waiting at BSRFC.
                         </Typography>
@@ -64,7 +60,7 @@ export function ClubIntroduction(): ReactNode {
                             component={Link}
                             endIcon={<ArrowForward />}
                             href="/club/about"
-                            sx={{ alignSelf: "flex-start", color: "common.white", px: 2 }}
+                            sx={{ alignSelf: "flex-start", border: "1px solid lightgrey", px: 2 }}
                         >
                             About the club
                         </Button>

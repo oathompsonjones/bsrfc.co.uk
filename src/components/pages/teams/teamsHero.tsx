@@ -11,11 +11,11 @@ import firstXv from "assets/images/1st-xv-26-27.jpg";
  * @returns The teams page hero.
  */
 export function TeamsHero(): ReactNode {
-    const theme = useTheme();
+    const { palette } = useTheme();
     const heroOverlay = [
-        `linear-gradient(90deg, ${alpha(theme.palette.common.black, 0.88)} 0%,`,
-        `${alpha(theme.palette.common.black, 0.64)} 52%,`,
-        `${alpha(theme.palette.common.black, 0.18)} 100%)`,
+        `linear-gradient(90deg, ${alpha(palette.common.black, 0.88)} 0%,`,
+        `${alpha(palette.common.black, 0.64)} 52%,`,
+        `${alpha(palette.common.black, 0.18)} 100%)`,
     ].join(" ");
 
     return (
@@ -24,7 +24,6 @@ export function TeamsHero(): ReactNode {
             component="section"
             sx={{
                 alignItems: "center",
-                bgcolor: theme.palette.common.black,
                 display: "flex",
                 minHeight: { md: "22rem", xs: "20rem" },
                 mt: -2,
@@ -40,14 +39,7 @@ export function TeamsHero(): ReactNode {
                 src={firstXv}
                 style={{ objectFit: "cover", objectPosition: "center 38%" }}
             />
-            <Box
-                aria-hidden="true"
-                sx={{
-                    background: heroOverlay,
-                    inset: 0,
-                    position: "absolute",
-                }}
-            />
+            <Box sx={{ background: heroOverlay, inset: 0, position: "absolute" }} />
             <Stack
                 spacing={1}
                 sx={{
@@ -61,7 +53,7 @@ export function TeamsHero(): ReactNode {
             >
                 <Typography
                     component="p"
-                    sx={{ color: theme.palette.secondary.main, fontWeight: 700, letterSpacing: "0.16em" }}
+                    sx={{ color: "secondary.main", fontWeight: 700, letterSpacing: "0.16em" }}
                     variant="overline"
                 >
                     #ONECLUB
@@ -80,7 +72,7 @@ export function TeamsHero(): ReactNode {
                     Our Teams
                 </Typography>
                 <Typography
-                    sx={{ color: alpha(theme.palette.common.white, 0.88), lineHeight: 1.7, maxWidth: "40rem", pt: 1 }}
+                    sx={{ color: "lightgrey", lineHeight: 1.7, maxWidth: "40rem", pt: 1 }}
                     variant="body1"
                 >
                     From first steps on the pitch to senior rugby, there&apos;s a place for everyone at Bishop&apos;s

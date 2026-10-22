@@ -1,5 +1,3 @@
-"use client";
-
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import type { ReactNode } from "react";
@@ -9,7 +7,6 @@ import kitShowcase from "assets/images/kit-showcase.jpg";
 import leeds from "assets/images/1st-xv-leeds.jpg";
 import leicester from "assets/images/1st-xv-leicester.jpg";
 import rams from "assets/images/1st-xv-rams.jpg";
-import { useTheme } from "@mui/material/styles";
 
 const slides = [
     { alt: "BSRFC first XV, 2026–27 season", image: firstXv, subtitle: "2026 / 27", title: "FIRST XV" },
@@ -42,12 +39,7 @@ function slidePosition(index: number, tick: number): -1 | 0 | 1 {
  * @param props.transition - The CSS transition for the slide and caption animations.
  * @returns The hero background images and captions.
  */
-export function HeroImage({ tick, transition }: Readonly<{
-    tick: number;
-    transition: string;
-}>): ReactNode {
-    const theme = useTheme();
-
+export function HeroImage({ tick, transition }: Readonly<{ tick: number; transition: string; }>): ReactNode {
     return (
         <>
             <Box sx={{ inset: 0, overflow: "hidden", position: "absolute" }}>
@@ -83,7 +75,10 @@ export function HeroImage({ tick, transition }: Readonly<{
 
             <Box
                 sx={{
-                    borderLeft: `2px solid ${theme.palette.secondary.main}`,
+                    borderLeft: "2px solid",
+                    // This has to come after borderLeft to actually apply the border color correctly.
+                    // eslint-disable-next-line sort-keys
+                    borderColor: "secondary.main",
                     bottom: 2.5,
                     display: { md: "block", xs: "none" },
                     mb: 2,

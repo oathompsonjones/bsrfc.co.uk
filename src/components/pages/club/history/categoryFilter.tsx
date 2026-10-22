@@ -36,7 +36,7 @@ export function CategoryFilter({ categories, selectedCategories: selected, onTog
                 )}
                 onClick={openMenu}
                 startIcon={<FilterList />}
-                sx={{ borderRadius: 2, boxShadow: 2, fontWeight: 700 }}
+                sx={{ boxShadow: 2, fontWeight: 700 }}
                 variant="contained"
             >
                 Filter events
