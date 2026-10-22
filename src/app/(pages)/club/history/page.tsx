@@ -1,103 +1,163 @@
-import { Box, Container, Paper, Stack, Typography } from "@mui/material";
-import type { ReactNode } from "react";
+"use client";
 
-const events = [
+import { Box, Container, Stack, Typography } from "@mui/material";
+import { useCallback, useState } from "react";
+import { CategoryFilter } from "components/pages/club/history/categoryFilter";
+import type { ReactNode } from "react";
+import { Timeline } from "components/pages/club/history/timeline";
+
+export type Event = {
+    categories: string[];
+    description: ReactNode;
+    title: ReactNode;
+    year: string;
+};
+
+const events: Event[] = [
     {
-        category: "Club origins",
-        description: "Bishop’s Stortford Rugby Football Club was founded in 1921, with its earliest matches played " +
-            "at Dunmow Road. In 1928, the Club moved to its current home at Silver Leys, where generations of " +
-            "players have since worn the blue and white with pride.",
+        categories: ["Club heritage"],
+        description: (
+            <>
+                Bishop&apos;s Stortford Rugby Football Club was founded in 1921, with its earliest matches played
+                at Dunmow Road. In 1928, the Club moved to its current home at Silver Leys, where generations of
+                players have since worn the blue and white with pride.
+            </>
+        ),
         title: "A proud beginning",
         year: "1921–1928",
     },
     {
-        category: "Facilities",
-        description: "The Clubhouse was re-opened in 1985 with a celebratory match between the First XV and an " +
-            "International Select XV. While the score has faded into legend, tales of individual triumphs over " +
-            "international stars remain part of Club folklore.",
+        categories: ["Facilities"],
+        description: (
+            <>
+                The Clubhouse was re-opened in 1985 with a celebratory match between the First XV and an
+                International Select XV. While the score has faded into legend, tales of individual triumphs over
+                international stars remain part of Club folklore.
+            </>
+        ),
         title: "A clubhouse reborn",
         year: "1985",
     },
     {
-        category: "Men's rugby",
-        description: "With the introduction of League Rugby in 1987, the Club quickly found its footing, earning " +
-            "promotion to London Two North in the very first season. A long period of consistency followed, with the " +
-            "team regularly finishing in the top half of the table. After 15 years of near misses, promotion to " +
-            "London One (Level 5) was finally secured in 2003.",
+        categories: ["Men's rugby"],
+        description: (
+            <>
+                With the introduction of League Rugby in 1987, the Club quickly found its footing, earning
+                promotion to London Two North in the very first season. A long period of consistency followed, with the
+                team regularly finishing in the top half of the table. After 15 years of near misses, promotion to
+                London One (Level 5) was finally secured in 2003.
+            </>
+        ),
         title: "League rugby and a steady rise",
         year: "1987–2003",
     },
     {
-        category: "Club honours",
-        description: "The Blues, the Club’s Second XV, lifted the Hertfordshire County Cup in 2008 and again in " +
-            "2013,  finishing runners-up in 2014. The competition has been restricted to Level 6 and below since " +
-            "2012–13.",
+        categories: ["Club honours", "Men's rugby"],
+        description: (
+            <>
+                The Blues, the Club&apos;s Second XV, lifted the Hertfordshire County Cup in 2008 and again in
+                2013,  finishing runners-up in 2014. The competition has been restricted to Level 6 and below since
+                2012–13.
+            </>
+        ),
         title: "The Blues lift the county cup",
         year: "2008, 2013 & 2014",
     },
     {
-        category: "Men's rugby",
-        description: "In 2012, the league was renamed National 3 London & South East. The change seemed to suit " +
-            "us—by 2013, after a decade of steady progress, we were crowned champions. The title was clinched in " +
-            "front of a crowd of 1,500 at Silver Leys on a sunny April afternoon, defeating Old Elthamians RFC in a " +
-            "match to remember.",
+        categories: ["Men's rugby"],
+        description: (
+            <>
+                In 2012, the league was renamed National 3 London & South East. The change seemed to suit
+                us—by 2013, after a decade of steady progress, we were crowned champions. The title was clinched in
+                front of a crowd of 1,500 at Silver Leys on a sunny April afternoon, defeating Old Elthamians RFC in a
+                match to remember.
+            </>
+        ),
         title: "Champions again",
         year: "2012–2013",
     },
     {
-        category: "Men's rugby",
-        description: "Our first season at Level 4 brought early challenges, but the team rallied. Post-Christmas, " +
-            "we became one of the league’s form sides, finishing an incredible third overall after a final-day " +
-            "victory over league winners Hartpury College RFC.",
+        categories: ["Men's rugby"],
+        description: (
+            <>
+                Our first season at Level 4 brought early challenges, but the team rallied. Post-Christmas,
+                we became one of the league&apos;s form sides, finishing an incredible third overall after a final-day
+                victory over league winners Hartpury College RFC.
+            </>
+        ),
         title: "A new era: National 2 South",
         year: "2013–2014",
     },
     {
-        category: "Youth rugby",
-        description: "Our Colts (U18s), playing mostly on Sundays, are regular winners of the Hertfordshire County " +
-            "Colts Cup and Sevens Cup. They also compete nationally, having won the National Colts Competition in " +
-            "2012–13.",
+        categories: ["Youth rugby"],
+        description: (
+            <>
+                Our Colts (U18s), playing mostly on Sundays, are regular winners of the Hertfordshire County
+                Colts Cup and Sevens Cup. They also compete nationally, having won the National Colts Competition in
+                2012–13.
+            </>
+        ),
         title: "National success for the Colts",
         year: "2012–2013",
     },
     {
-        category: "Men's rugby",
-        description: "Stortford won National League 2 South after beating Exmouth 60–7 away from home on 22 April. " +
-            "A week later, 1,664 spectators attended the final home league match against Barnes, setting a club " +
-            "attendance record.",
+        categories: ["Club honours", "Men's rugby"],
+        description: (
+            <>
+                Stortford won National League 2 South after beating Exmouth 60–7 away from home on 22 April.
+                A week later, 1,664 spectators attended the final home league match against Barnes, setting a club
+                attendance record.
+            </>
+        ),
         title: "Promotion to National League 1",
         year: "2017",
     },
     {
-        category: "Club heritage",
-        description: "Bishop’s Stortford RFC reached its centenary, celebrating 100 years of rugby, community, and " +
-            "shared memories since the Club’s foundation in 1921.",
+        categories: ["Club heritage"],
+        description: (
+            <>
+                Bishop&apos;s Stortford RFC reached its centenary, celebrating 100 years of rugby, community, and
+                shared memories since the Club&apos;s foundation in 1921.
+            </>
+        ),
         title: "One hundred years of rugby",
-        year: "2020",
+        year: "2021",
     },
     {
-        category: "Women's rugby",
-        description: "The women's section witnessed remarkable expansion. Following their triumphant promotion in " +
-            "the 2024–2025 season, the ambition turned towards further consolidation and growth. By the close of the " +
-            "2025–2026 campaign, efforts were well underway to establish a regularly fielded Second XV, marking " +
-            "another significant milestone in the section’s development.",
+        categories: ["Women's rugby"],
+        description: (
+            <>
+                The women's section witnessed remarkable expansion. Following their triumphant promotion in
+                the 2024–2025 season, the ambition turned towards further consolidation and growth. By the close of the
+                2025–2026 campaign, efforts were well underway to establish a regularly fielded Second XV, marking
+                another significant milestone in the section&apos;s development.
+            </>
+        ),
         title: "Women and girls continue to grow",
         year: "2024–2026",
     },
     {
-        category: "Club development",
-        description: "Our Mini and Youth Sections are thriving, with around 600 children learning and enjoying rugby " +
-            "at Stortford. This success is thanks to the dedication of parent-coaches and the Club’s commitment to " +
-            "training and development.",
+        categories: ["Youth rugby", "Minis rugby"],
+        description: (
+            <>
+                Our Mini and Youth Sections are thriving, with around 600 children learning and enjoying rugby
+                at Stortford. This success is thanks to the dedication of parent-coaches and the Club&apos;s commitment
+                to training and development.
+            </>
+        ),
         title: "Mini and youth rugby",
         year: "Today",
     },
     {
-        category: "Club development",
-        description: "The Blues compete in the Zoo Shield Division 2 North and represent the Club in the " +
-            "Hertfordshire County Cup. Our Thirds and Fourths play in the Herts Middlesex Merit Tables, while the " +
-            "Fifths are currently on a temporary break due to player shortages. Across all teams, we maintain a " +
-            "strong tradition of competitive yet social rugby every Saturday.",
+        categories: ["Men's rugby"],
+        description: (
+            <>
+                The Blues compete in the Zoo Shield Division 2 North and represent the Club in the
+                Hertfordshire County Cup. Our Thirds and Fourths play in the Herts Middlesex Merit Tables, while the
+                Fifths are currently on a temporary break due to player shortages. Across all teams, we maintain a
+                strong tradition of competitive yet social rugby every Saturday.
+            </>
+        ),
         title: "Rugby beyond the First XV",
         year: "Today",
     },
@@ -108,10 +168,19 @@ const events = [
  * @returns The history page.
  */
 export default function History(): ReactNode {
+    const allCategories = [...new Set(events.map((event) => event.categories).flat())].sort();
+    const [categories, setCategories] = useState<string[]>([]);
+
+    const updateCategories = useCallback((category: string) => {
+        setCategories((prev) => (prev.includes(category)
+            ? prev.filter((item) => item !== category)
+            : [...prev, category]));
+    }, []);
+
     return (
         <Box component="main">
             <Box sx={{ py: { md: 10, xs: 7 } }}>
-                <Container maxWidth="md">
+                <Container>
                     <Stack spacing={2}>
                         <Typography sx={{ fontWeight: 700, letterSpacing: 3 }} variant="overline">
                             Our heritage
@@ -133,69 +202,13 @@ export default function History(): ReactNode {
                 </Container>
             </Box>
 
-            <Container maxWidth="md" sx={{ py: { md: 9, xs: 6 } }}>
-                <Box
-                    sx={{
-                        // eslint-disable-next-line @typescript-eslint/naming-convention
-                        "&::before": {
-                            bgcolor: "secondary.main",
-                            borderRadius: 2,
-                            bottom: 12,
-                            content: "\"\"",
-                            left: { md: 15, xs: 10 },
-                            position: "absolute",
-                            top: 12,
-                            width: 3,
-                        },
-                        position: "relative",
-                    }}
-                >
-                    <Stack spacing={4}>
-                        {events.map((event) => (
-                            <Box key={event.title} sx={{ pl: { md: 6, xs: 4 }, position: "relative" }}>
-                                <Box
-                                    sx={{
-                                        bgcolor: "primary.main",
-                                        border: "4px solid",
-                                        borderColor: "secondary.main",
-                                        borderRadius: "50%",
-                                        boxShadow: 0,
-                                        height: 17,
-                                        left: { md: 8, xs: 3 },
-                                        position: "absolute",
-                                        top: 5,
-                                        width: 17,
-                                        zIndex: 1,
-                                    }}
-                                />
-
-                                <Paper sx={{ borderRadius: 2, p: { md: 3.5, xs: 2.5 } }}>
-                                    <Stack spacing={1.5}>
-                                        <Typography
-                                            color="primary.main"
-                                            sx={{ fontWeight: 800, letterSpacing: 1.5, lineHeight: 1.5 }}
-                                            variant="overline"
-                                        >
-                                            {event.year}
-                                        </Typography>
-
-                                        <Typography
-                                            component="h2"
-                                            sx={{ fontSize: { md: "1.5rem", xs: "1.2rem" }, fontWeight: 700 }}
-                                            variant="h5"
-                                        >
-                                            {event.title}
-                                        </Typography>
-
-                                        <Typography color="text.secondary" sx={{ lineHeight: 1.8 }} variant="body1">
-                                            {event.description}
-                                        </Typography>
-                                    </Stack>
-                                </Paper>
-                            </Box>
-                        ))}
-                    </Stack>
-                </Box>
+            <Container sx={{ py: { md: 9, xs: 6 } }}>
+                <CategoryFilter
+                    categories={allCategories}
+                    onToggle={updateCategories}
+                    selectedCategories={categories}
+                />
+                <Timeline categories={categories} events={events} />
 
                 <Box sx={{ borderColor: "divider", borderTop: 1, mt: 7, pt: 4 }}>
                     <Stack spacing={2}>
@@ -216,7 +229,7 @@ export default function History(): ReactNode {
                                 py: 1,
                             }}
                         >
-                            “We have games at all levels for any age, size, ability and fitness – join us now, be part
+                            “We have games at all levels for any age, size, ability and — join us now, be part
                             of the Club and prove it!”
                         </Typography>
 
