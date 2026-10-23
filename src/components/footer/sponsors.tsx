@@ -151,7 +151,7 @@ export function Sponsors(): ReactNode {
     }, []);
 
     return (
-        <Box ref={containerRef} sx={{ height: "100px", overflow: "hidden", width: "100%" }}>
+        <Box ref={containerRef} sx={{ height: "75px", overflow: "hidden", width: "100%" }}>
             <Stack
                 direction="row"
                 sx={{

@@ -1,8 +1,8 @@
 "use client";
 
 import { Box, Divider, Stack } from "@mui/material";
-import { Copyright } from "./copyright";
 import { ExtraLinks } from "./extraLinks";
+import { Info } from "./info";
 import type { ReactNode } from "react";
 import { Socials } from "./socials";
 import { Sponsors } from "./sponsors";
@@ -19,7 +19,7 @@ export function Footer(): ReactNode {
                 <Socials />
                 <ExtraLinks />
                 <Sponsors />
-                <Copyright />
+                <Info />
             </Stack>
         </Box>
     );
