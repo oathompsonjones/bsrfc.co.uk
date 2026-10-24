@@ -50,7 +50,6 @@ export function Timeline({ events, categories }: Readonly<{ events: Event[]; cat
                                 <Stack spacing={1.5}>
                                     <Typography
                                         color="primary.main"
-                                        
                                         variant="overline"
                                     >
                                         {event.year}
