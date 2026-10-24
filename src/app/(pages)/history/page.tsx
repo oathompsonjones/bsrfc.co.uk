@@ -2,9 +2,9 @@
 
 import { Box, Stack, Typography } from "@mui/material";
 import { useCallback, useState } from "react";
-import { CategoryFilter } from "components/pages/club/history/categoryFilter";
+import { CategoryFilter } from "components/pages/history/categoryFilter";
 import type { ReactNode } from "react";
-import { Timeline } from "components/pages/club/history/timeline";
+import { Timeline } from "components/pages/history/timeline";
 
 export type Event = {
     categories: string[];

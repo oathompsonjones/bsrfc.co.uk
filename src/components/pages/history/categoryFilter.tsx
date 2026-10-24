@@ -44,6 +44,7 @@ export function CategoryFilter({ categories, selectedCategories: selected, onTog
 
             <Menu
                 anchorEl={anchor}
+                disableScrollLock
                 onClose={handleClose}
                 open={Boolean(anchor)}
                 slotProps={{ paper: { sx: { borderRadius: 2, minWidth: 220, mt: 1 } } }}
