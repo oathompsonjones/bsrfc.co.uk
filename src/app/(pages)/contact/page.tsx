@@ -1,0 +1,213 @@
+import { Divider, Grid, Typography } from "@mui/material";
+import { ContactCard } from "components/pages/contact/contactCard";
+import { Fragment } from "react";
+import Link from "next/link";
+import type { ReactNode } from "react";
+
+export type Person = {
+    name: string;
+    roles: string[];
+    email?: string;
+    phone?: string;
+    avatar?: string;
+};
+
+type ContactGroup = {
+    category: string;
+    people: Person[];
+};
+
+const contacts: ContactGroup[] = [
+    {
+        category: "Club Leadership",
+        people: [
+            {
+                email: "president@bsrfc.co.uk",
+                name: "David Walker",
+                phone: "07970 551378",
+                roles: ["President", "Discipline Secretary", "Club Disciplinary Officer"],
+            },
+            {
+                email: "chair@bsrfc.co.uk",
+                name: "Gareth Tracey",
+                phone: "07880 928644",
+                roles: ["Chairman"],
+            },
+            {
+                email: "vice-chair@bsrfc.co.uk",
+                name: "Graham Willson",
+                phone: "07876 307815",
+                roles: ["Vice Chairman"],
+            },
+            {
+                email: "secretary@bsrfc.co.uk",
+                name: "Dee Compton",
+                phone: "01279 652092",
+                roles: ["Honorary Secretary"],
+            },
+            {
+                email: "tradingfinance@bsrfc.co.uk",
+                name: "James Andrews",
+                roles: ["Honorary Treasurer"],
+            },
+            {
+                email: "membership@bsrfc.co.uk",
+                name: "Geoff Pedersen",
+                phone: "01279 652092",
+                roles: ["Membership Secretary"],
+            },
+        ],
+    },
+    {
+        category: "Senior Rugby",
+        people: [
+            {
+                email: "seniormenschair@bsrfc.co.uk",
+                name: "Chetan Sharma",
+                phone: "07341 344337",
+                roles: ["Senior Men's Chair", "Adult Male Contact (19+)"],
+            },
+            {
+                email: "womensmanager@bsrfc.co.uk",
+                name: "Donna McDonald",
+                phone: "07854 220433",
+                roles: ["Women and Girls Chair", "Women and Girls Contact"],
+            },
+        ],
+    },
+    {
+        category: "Youth and Mini Rugby",
+        people: [
+            {
+                name: "Matt Woodford",
+                phone: "07850 596677",
+                roles: ["Colts Lead Coach"],
+            },
+            {
+                name: "Roland Bruand",
+                phone: "07779 808419",
+                roles: ["Colts Manager"],
+            },
+            {
+                name: "Jim Tanfield",
+                phone: "07795 417258",
+                roles: ["Youth Rugby Chair", "Youth Contact (12–18)"],
+            },
+            {
+                name: "Nikky Wilkins",
+                phone: "07716 705603",
+                roles: ["Mini Rugby Chair", "Mini Contact (5–11)", "Girls Contact (Under 18s)"],
+            },
+        ],
+    },
+    {
+        category: "Club Operations",
+        people: [
+            {
+                name: "Darian Compton",
+                phone: "01279 652092",
+                roles: ["General Enquiries Contact"],
+            },
+            {
+                name: "Mehmet Mehmet",
+                roles: ["Fixture Secretary", "Data"],
+            },
+            {
+                name: "Claire Sanday",
+                roles: ["Safeguarding"],
+            },
+            {
+                email: "keith.edgeworth@hotmail.com",
+                name: "Keith Edgeworth",
+                phone: "07905 153141",
+                roles: ["Referee Co-ordinator"],
+            },
+            {
+                name: "Benjamin Furrer",
+                phone: "07836 545858",
+                roles: ["Coaching Co-ordinator"],
+            },
+            {
+                name: "Ros Lennon",
+                roles: ["International Ticket Contact"],
+            },
+        ],
+    },
+    {
+        category: "Commercial and Facilities",
+        people: [
+            {
+                email: "trading-chair@bsrfc.co.uk",
+                name: "Jamie Baker",
+                roles: ["Trading Subsidiary Chairman"],
+            },
+            {
+                email: "trading2@bsrfc.co.uk",
+                name: "Karl Winter",
+                roles: ["Trading Subsidiary Secretary"],
+            },
+            {
+                email: "sponsorship@bsrfc.co.uk",
+                name: "Julie North",
+                roles: ["Sponsorship and Advertising"],
+            },
+            {
+                email: "1stxvlunches@bsrfc.co.uk",
+                name: "Gemma Menzies",
+                roles: ["1st XV Match Lunches"],
+            },
+            {
+                email: "clubshop@bsrfc.co.uk",
+                name: "Club Shop",
+                roles: ["Club Shop Enquiries"],
+            },
+        ],
+    },
+    {
+        category: "Other Enquiries",
+        people: [
+            {
+                email: "membership@bsrfc.co.uk",
+                name: "Geoff Pedersen",
+                phone: "01279 652092",
+                roles: ["Membership and Club Data"],
+            },
+            {
+                name: "Donna McDonald",
+                phone: "07854 220433",
+                roles: ["RugbySafe Lead"],
+            },
+        ],
+    },
+];
+
+/**
+ * This is the contact page.
+ * @returns The contact page.
+ */
+export default function Contact(): ReactNode {
+    return (
+        <>
+            <Typography variant="h1">Contact Us</Typography>
+            <Typography>
+                For general enquiries, please contact us at{" "}
+                <Link href="mailto:secretary@bsrfc.co.uk">secretary@bsrfc.co.uk</Link>.
+            </Typography>
+            <Divider />
+            <Grid container spacing={2}>
+                {contacts.map((category) => (
+                    <Fragment key={category.category}>
+                        <Grid size={12}>
+                            <Typography variant="h2">{category.category}</Typography>
+                        </Grid>
+                        {category.people.map((person) => (
+                            <Grid key={person.name} size={4}>
+                                <ContactCard person={person} />
+                            </Grid>
+                        ))}
+                    </Fragment>
+                ))}
+            </Grid>
+        </>
+    );
+}
