@@ -4,7 +4,6 @@ import { AppBar, Box, Drawer, IconButton, List, Toolbar } from "@mui/material";
 import { useCallback, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import Image from "next/image";
-import Link from "next/link";
 import MenuIcon from "@mui/icons-material/Menu";
 import { MobileNavItem } from "./mobileNavItem";
 import { NavItem } from "./navItem";
@@ -81,7 +80,8 @@ const navItems: NavItemData[] = [
  * @returns The page header.
  */
 export function Header(): ReactNode {
-    const [menu, setMenu] = useState<string | null>(null);
+    // eslint-disable-next-line react/hook-use-state
+    const menuState = useState<string | null>(null);
     const { navHidden, navJs } = useNavScroll();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [expandedItem, setExpandedItem] = useState<string | null>(null);
@@ -163,11 +163,7 @@ export function Header(): ReactNode {
                 >
                     {navItems.map(({ href, label, links }) => (
                         links
-                            ? (
-                                <NavItem href={href} key={href} label={label} menuState={[menu, setMenu]}>
-                                    {links.map((link) => <Link href={link.href} key={link.href}>{link.label}</Link>)}
-                                </NavItem>
-                            )
+                            ? <NavItem href={href} key={href} label={label} menuState={menuState}>{links}</NavItem>
                             : <NavItem href={href} key={href} label={label} />
                     ))}
                 </Toolbar>

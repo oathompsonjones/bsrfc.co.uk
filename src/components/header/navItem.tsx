@@ -4,10 +4,11 @@ import { Button, ButtonGroup, Menu, MenuItem } from "@mui/material";
 import type { Dispatch, ReactNode, SetStateAction } from "react";
 import { useCallback, useEffect, useRef } from "react";
 import { KeyboardArrowDown } from "@mui/icons-material";
+import Link from "next/dist/client/link";
 import OpenInNew from "@mui/icons-material/OpenInNew";
 
 type Props<S> = {
-    children: ReactNode;
+    children: Array<{ href: string; label: string; }>;
     href: string;
     label: string;
     menuState: [S, Dispatch<SetStateAction<S>>];
@@ -75,9 +76,9 @@ export function NavItem(props: Props<string | null>): ReactNode {
                         root: { sx: { pointerEvents: "none" } },
                     }}
                 >
-                    {[children].flat().map((child, index) => (
-                        <MenuItem key={index}>
-                            {child}
+                    {[children].flat().map((link) => (
+                        <MenuItem component={Link} href={link.href} key={link.href} onClick={closeMenu}>
+                            {link.label}
                         </MenuItem>
                     ))}
                 </Menu>
