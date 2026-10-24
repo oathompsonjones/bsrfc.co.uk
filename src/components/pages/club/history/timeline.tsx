@@ -1,5 +1,5 @@
 import { Box, Paper, Stack, Typography } from "@mui/material";
-import type { Event } from "pages/club/history/page";
+import type { Event } from "app/(pages)/history/page";
 import type { ReactNode } from "react";
 
 /**

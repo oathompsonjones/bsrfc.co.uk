@@ -24,12 +24,12 @@ const navItems: NavItemData[] = [
         href: "/club",
         label: "Club",
         links: [
-            { href: "/club/about", label: "About the Club" },
-            { href: "/club/committee", label: "Committee" },
-            { href: "/club/history", label: "Club History" },
-            { href: "/club/contact", label: "Contact" },
-            { href: "/club/safeguarding", label: "Safeguarding & Policies" },
-            { href: "/club/find-us", label: "Find Us" },
+            { href: "/about", label: "About the Club" },
+            { href: "/committee", label: "Committee" },
+            { href: "/history", label: "Club History" },
+            { href: "/contact", label: "Contact" },
+            { href: "/safeguarding", label: "Safeguarding & Policies" },
+            { href: "/find-us", label: "Find Us" },
         ],
     },
     {
@@ -50,7 +50,7 @@ const navItems: NavItemData[] = [
         label: "News & Media",
         links: [
             { href: "/news", label: "News" },
-            { href: "/news/match-reports", label: "Match Reports" },
+            { href: "/match-reports", label: "Match Reports" },
             { href: "/gallery", label: "Gallery" },
             { href: "/highlights", label: "Highlights" },
         ],
@@ -59,9 +59,9 @@ const navItems: NavItemData[] = [
         href: "/membership",
         label: "Membership",
         links: [
-            { href: "/membership/join", label: "Join the Club" },
             { href: "/membership", label: "Membership Information" },
-            { href: "/membership/volunteers", label: "Volunteers" },
+            { href: "/join", label: "Join the Club" },
+            { href: "/volunteers", label: "Volunteers" },
         ],
     },
     {
@@ -69,8 +69,7 @@ const navItems: NavItemData[] = [
         label: "Events",
         links: [
             { href: "/events", label: "Upcoming Events" },
-            { href: "/events/clubhouse", label: "Clubhouse" },
-            { href: "/events/venue-hire", label: "Venue Hire" },
+            { href: "/venue-hire", label: "Venue Hire" },
         ],
     },
     { href: "https://bsrfcshop.co.uk", label: "Shop" },
