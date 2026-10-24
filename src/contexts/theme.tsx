@@ -10,20 +10,21 @@ import {
 } from "@mui/material";
 import DefaultPropsProvider from "@mui/material/DefaultPropsProvider";
 import type { ReactNode } from "react";
+import type { TypographyStyle, TypographyStyleOptions } from "@mui/material/styles";
 
 declare module "@mui/material/styles" {
     interface TypographyVariants {
-        heroTitle: React.CSSProperties;
-        pageIntro: React.CSSProperties;
-        sectionEyebrow: React.CSSProperties;
-        timelineTitle: React.CSSProperties;
+        heroTitle: TypographyStyle;
+        pageIntro: TypographyStyle;
+        sectionEyebrow: TypographyStyle;
+        timelineTitle: TypographyStyle;
     }
 
     interface TypographyVariantsOptions {
-        heroTitle?: React.CSSProperties;
-        pageIntro?: React.CSSProperties;
-        sectionEyebrow?: React.CSSProperties;
-        timelineTitle?: React.CSSProperties;
+        heroTitle?: TypographyStyleOptions;
+        pageIntro?: TypographyStyleOptions;
+        sectionEyebrow?: TypographyStyleOptions;
+        timelineTitle?: TypographyStyleOptions;
     }
 }
 
