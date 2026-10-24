@@ -11,6 +11,31 @@ import {
 import DefaultPropsProvider from "@mui/material/DefaultPropsProvider";
 import type { ReactNode } from "react";
 
+declare module "@mui/material/styles" {
+    interface TypographyVariants {
+        heroTitle: React.CSSProperties;
+        pageIntro: React.CSSProperties;
+        sectionEyebrow: React.CSSProperties;
+        timelineTitle: React.CSSProperties;
+    }
+
+    interface TypographyVariantsOptions {
+        heroTitle?: React.CSSProperties;
+        pageIntro?: React.CSSProperties;
+        sectionEyebrow?: React.CSSProperties;
+        timelineTitle?: React.CSSProperties;
+    }
+}
+
+declare module "@mui/material/Typography" {
+    interface TypographyPropsVariantOverrides {
+        heroTitle: true;
+        pageIntro: true;
+        sectionEyebrow: true;
+        timelineTitle: true;
+    }
+}
+
 const BLUE = "#003ca5";
 const PINK = "#e01583";
 const WHITE = "#ffffff";
@@ -31,7 +56,14 @@ export function ThemeContextProvider({ children }: { readonly children: ReactNod
     };
     const theme = responsiveFontSizes(createTheme({
         components: {
-            MuiButton: { styleOverrides: { root: { borderRadius: "0" } } },
+            MuiButton: {
+                styleOverrides: {
+                    root: {
+                        borderRadius: "0",
+                        fontWeight: 700,
+                    },
+                },
+            },
             MuiButtonGroup: {
                 styleOverrides: {
                     root: {
@@ -89,12 +121,39 @@ export function ThemeContextProvider({ children }: { readonly children: ReactNod
                 "button",
                 "overline",
             ].map((key) => [key, { color: palette.common.white }])),
-            h1: { fontSize: "2.5rem" },
-            h2: { fontSize: "2rem" },
-            h3: { fontSize: "1.75rem" },
-            h4: { fontSize: "1.5rem" },
-            h5: { fontSize: "1.25rem" },
-            h6: { fontSize: "1.1rem" },
+            h1: { fontSize: "2.5rem", fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 1.1 },
+            h2: { fontSize: "2rem", fontWeight: 800, lineHeight: 1.2 },
+            h3: { fontSize: "1.75rem", fontWeight: 700, lineHeight: 1.2 },
+            h4: { fontSize: "1.5rem", fontWeight: 700, lineHeight: 1.3 },
+            h5: { fontSize: "1.25rem", fontWeight: 700, lineHeight: 1.3 },
+            h6: { fontSize: "1.1rem", fontWeight: 600, lineHeight: 1.5 },
+            body1: { fontSize: "1rem", fontWeight: 400, lineHeight: 1.7 },
+            body2: { fontSize: "0.875rem", fontWeight: 400, lineHeight: 1.7 },
+            button: { fontWeight: 700 },
+            overline: { fontSize: "0.8rem", fontWeight: 700, letterSpacing: "0.16em", lineHeight: 1.5 },
+            heroTitle: {
+                fontSize: "clamp(3.2rem, 7.5vw, 6.5rem)",
+                fontWeight: 800,
+                letterSpacing: "-0.055em",
+                lineHeight: 0.98,
+            },
+            pageIntro: {
+                fontSize: { xs: "1rem", md: "1.2rem" },
+                fontWeight: 400,
+                lineHeight: 1.7,
+            },
+            sectionEyebrow: {
+                fontSize: "0.8rem",
+                fontWeight: 700,
+                letterSpacing: "0.16em",
+                lineHeight: 1.5,
+                textTransform: "uppercase",
+            },
+            timelineTitle: {
+                fontSize: { xs: "1.2rem", md: "1.5rem" },
+                fontWeight: 700,
+                lineHeight: 1.3,
+            },
         }),
         zIndex: { appBar: 10, fab: 10 },
     }), { breakpoints: ["xs", "sm", "md", "lg", "xl"] });
