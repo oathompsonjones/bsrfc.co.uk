@@ -63,8 +63,11 @@ export function TeamsHero(): ReactNode {
                     sx={{
                         color: "common.white",
                         fontSize: { md: "clamp(3rem, 6vw, 5rem)", xs: "clamp(2.75rem, 12vw, 3.5rem)" },
+                        fontWeight: 800,
+                        letterSpacing: "-0.05em",
+                        lineHeight: 1,
                     }}
-                    variant="heroTitle"
+                    variant="h1"
                 >
                     Our Teams
                 </Typography>

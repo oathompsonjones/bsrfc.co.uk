@@ -10,25 +10,6 @@ import {
 } from "@mui/material";
 import DefaultPropsProvider from "@mui/material/DefaultPropsProvider";
 import type { ReactNode } from "react";
-import type { TypographyStyle } from "@mui/material/styles";
-
-/* eslint-disable @typescript-eslint/consistent-type-definitions */
-declare module "@mui/material/styles" {
-    interface TypographyVariants {
-        heroTitle: TypographyStyle;
-    }
-
-    interface TypographyVariantsOptions {
-        heroTitle?: TypographyStyle;
-    }
-}
-
-declare module "@mui/material/Typography" {
-    interface TypographyPropsVariantOverrides {
-        heroTitle: true;
-    }
-}
-/* eslint-enable @typescript-eslint/consistent-type-definitions */
 
 const BLUE = "#003ca5";
 const PINK = "#e01583";
@@ -124,12 +105,6 @@ export function ThemeContextProvider({ children }: { readonly children: ReactNod
             h4: { fontSize: "1.5rem", fontWeight: 700, lineHeight: 1.3 },
             h5: { fontSize: "1.25rem", fontWeight: 700, lineHeight: 1.3 },
             h6: { fontSize: "1.1rem", fontWeight: 600, lineHeight: 1.5 },
-            heroTitle: {
-                fontSize: "clamp(3.2rem, 7.5vw, 6.5rem)",
-                fontWeight: 800,
-                letterSpacing: "-0.055em",
-                lineHeight: 0.98,
-            },
             overline: { fontSize: "0.8rem", fontWeight: 700, letterSpacing: "0.16em", lineHeight: 1.5 },
         }),
         zIndex: { appBar: 10, fab: 10 },
