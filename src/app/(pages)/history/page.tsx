@@ -180,19 +180,19 @@ export default function History(): ReactNode {
     return (
         <>
             <Stack spacing={2}>
-                <Typography sx={{ fontWeight: 700, letterSpacing: 3 }} variant="overline">
+                <Typography variant="overline">
                     Our heritage
                 </Typography>
 
                 <Typography
                     component="h1"
-                    sx={{ fontSize: { md: "3.75rem", xs: "2.5rem" }, fontWeight: 800 }}
+                    sx={{ fontSize: { md: "3.75rem", xs: "2.5rem" } }}
                     variant="h2"
                 >
                     A century of rugby
                 </Typography>
 
-                <Typography sx={{ fontWeight: 400, lineHeight: 1.7, maxWidth: 680, opacity: 0.9 }} variant="h6">
+                <Typography sx={{ maxWidth: 680, opacity: 0.9 }} variant="body1">
                     From our beginnings in 1921 to the generations of players, volunteers, and supporters who
                     make Silver Leys home. Discover the milestones that have shaped Bishop&apos;s Stortford RFC.
                 </Typography>
@@ -207,7 +207,7 @@ export default function History(): ReactNode {
 
             <Box sx={{ borderColor: "divider", borderTop: 1, mt: 7, pt: 4 }}>
                 <Stack spacing={2}>
-                    <Typography color="text.secondary" sx={{ lineHeight: 1.8 }} variant="body1">
+                    <Typography color="text.secondary" variant="body1">
                         As England and British Lions legend Ben Clarke, one of our proudest alumni, once said:
                     </Typography>
 
@@ -228,7 +228,7 @@ export default function History(): ReactNode {
                         of the Club and prove it!”
                     </Typography>
 
-                    <Typography color="text.secondary" sx={{ lineHeight: 1.8 }} variant="body2">
+                    <Typography color="text.secondary" variant="body2">
                         Our history is still being written. Every match, every volunteer, and every generation of
                         players adds to the story of Bishop&apos;s Stortford RFC.
                     </Typography>

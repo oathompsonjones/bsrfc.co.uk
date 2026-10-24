@@ -31,7 +31,14 @@ export function ThemeContextProvider({ children }: { readonly children: ReactNod
     };
     const theme = responsiveFontSizes(createTheme({
         components: {
-            MuiButton: { styleOverrides: { root: { borderRadius: "0" } } },
+            MuiButton: {
+                styleOverrides: {
+                    root: {
+                        borderRadius: "0",
+                        fontWeight: 700,
+                    },
+                },
+            },
             MuiButtonGroup: {
                 styleOverrides: {
                     root: {
@@ -89,12 +96,16 @@ export function ThemeContextProvider({ children }: { readonly children: ReactNod
                 "button",
                 "overline",
             ].map((key) => [key, { color: palette.common.white }])),
-            h1: { fontSize: "2.5rem" },
-            h2: { fontSize: "2rem" },
-            h3: { fontSize: "1.75rem" },
-            h4: { fontSize: "1.5rem" },
-            h5: { fontSize: "1.25rem" },
-            h6: { fontSize: "1.1rem" },
+            body1: { fontSize: "1rem", fontWeight: 400, lineHeight: 1.7 },
+            body2: { fontSize: "0.875rem", fontWeight: 400, lineHeight: 1.7 },
+            button: { fontWeight: 700 },
+            h1: { fontSize: "2.5rem", fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 1.1 },
+            h2: { fontSize: "2rem", fontWeight: 800, lineHeight: 1.2 },
+            h3: { fontSize: "1.75rem", fontWeight: 700, lineHeight: 1.2 },
+            h4: { fontSize: "1.5rem", fontWeight: 700, lineHeight: 1.3 },
+            h5: { fontSize: "1.25rem", fontWeight: 700, lineHeight: 1.3 },
+            h6: { fontSize: "1.1rem", fontWeight: 600, lineHeight: 1.5 },
+            overline: { fontSize: "0.8rem", fontWeight: 700, letterSpacing: "0.16em", lineHeight: 1.5 },
         }),
         zIndex: { appBar: 10, fab: 10 },
     }), { breakpoints: ["xs", "sm", "md", "lg", "xl"] });

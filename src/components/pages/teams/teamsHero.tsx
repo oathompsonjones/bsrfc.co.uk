@@ -53,7 +53,7 @@ export function TeamsHero(): ReactNode {
             >
                 <Typography
                     component="p"
-                    sx={{ color: "secondary.main", fontWeight: 700, letterSpacing: "0.16em" }}
+                    sx={{ color: "secondary.main" }}
                     variant="overline"
                 >
                     #ONECLUB
@@ -72,7 +72,7 @@ export function TeamsHero(): ReactNode {
                     Our Teams
                 </Typography>
                 <Typography
-                    sx={{ color: "lightgrey", lineHeight: 1.7, maxWidth: "40rem", pt: 1 }}
+                    sx={{ color: "lightgrey", maxWidth: "40rem", pt: 1 }}
                     variant="body1"
                 >
                     From first steps on the pitch to senior rugby, there&apos;s a place for everyone at Bishop&apos;s
