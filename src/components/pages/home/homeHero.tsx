@@ -67,7 +67,7 @@ export function HomeHero(): ReactNode {
                     <Box sx={{ bgcolor: "secondary.main", height: 2, width: 32 }} />
                     <Typography
                         component="p"
-                        sx={{ color: "common.white", fontSize: "0.8rem", fontWeight: 700, letterSpacing: "0.18em" }}
+                        sx={{ color: "common.white" }}
                         variant="overline"
                     >
                         BISHOP&apos;S STORTFORD RUGBY FOOTBALL CLUB
@@ -77,14 +77,8 @@ export function HomeHero(): ReactNode {
                 <RotatingText tick={tick} transition={transition} />
 
                 <Typography
-                    sx={{
-                        color: "lightgrey",
-                        fontSize: { md: "1.2rem", xs: "1rem" },
-                        lineHeight: 1.7,
-                        maxWidth: "34rem",
-                        mt: 3,
-                    }}
-                    variant="body1"
+                    sx={{ color: "lightgrey", maxWidth: "34rem", mt: 3 }}
+                    variant="pageIntro"
                 >
                     Rugby for every age and ability. Find your team, meet your community and be part of
                     BSRFC.
@@ -98,7 +92,6 @@ export function HomeHero(): ReactNode {
                         href="/teams"
                         sx={{
                             color: "common.white",
-                            fontWeight: 700,
                             px: 3,
                             py: 1.5,
                         }}
