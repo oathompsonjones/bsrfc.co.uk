@@ -17,18 +17,8 @@ export function RotatingText({ tick, transition }: Readonly<{
     return (
         <Typography
             component="h1"
-            sx={{
-                color: "common.white",
-                fontSize: {
-                    md: "clamp(4rem, 7.5vw, 6.5rem)",
-                    xs: "clamp(3.2rem, 13vw, 4.5rem)",
-                },
-                fontWeight: 800,
-                letterSpacing: "-0.055em",
-                lineHeight: 0.98,
-                maxWidth: "14ch",
-            }}
-            variant="h1"
+            sx={{ color: "common.white", maxWidth: "14ch" }}
+            variant="heroTitle"
         >
             One{" "}
             <Box
