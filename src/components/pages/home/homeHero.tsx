@@ -105,7 +105,7 @@ export function HomeHero(): ReactNode {
                         sx={{
                             border: "1px solid lightgrey",
                             color: "common.white",
-                                            px: 3,
+                            px: 3,
                             py: 1.5,
                         }}
                     >

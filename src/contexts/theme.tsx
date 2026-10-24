@@ -8,11 +8,15 @@ import {
     darken,
     responsiveFontSizes,
 } from "@mui/material";
-import DefaultPropsProvider from "@mui/material/DefaultPropsProvider";
-import type { ReactNode } from "react";
 import type { TypographyStyle, TypographyStyleOptions } from "@mui/material/styles";
+import type { ReactNode } from "react";
+// Keep this default import after named imports to satisfy the configured import syntax order.
+// eslint-disable-next-line sort-imports
+import DefaultPropsProvider from "@mui/material/DefaultPropsProvider";
 
+// MUI's module augmentation API relies on interfaces so these can merge with its declarations.
 declare module "@mui/material/styles" {
+    // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
     interface TypographyVariants {
         heroTitle: TypographyStyle;
         pageIntro: TypographyStyle;
@@ -20,6 +24,7 @@ declare module "@mui/material/styles" {
         timelineTitle: TypographyStyle;
     }
 
+    // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
     interface TypographyVariantsOptions {
         heroTitle?: TypographyStyleOptions;
         pageIntro?: TypographyStyleOptions;
@@ -29,6 +34,7 @@ declare module "@mui/material/styles" {
 }
 
 declare module "@mui/material/Typography" {
+    // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
     interface TypographyPropsVariantOverrides {
         heroTitle: true;
         pageIntro: true;
@@ -122,24 +128,24 @@ export function ThemeContextProvider({ children }: { readonly children: ReactNod
                 "button",
                 "overline",
             ].map((key) => [key, { color: palette.common.white }])),
+            body1: { fontSize: "1rem", fontWeight: 400, lineHeight: 1.7 },
+            body2: { fontSize: "0.875rem", fontWeight: 400, lineHeight: 1.7 },
+            button: { fontWeight: 700 },
             h1: { fontSize: "2.5rem", fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 1.1 },
             h2: { fontSize: "2rem", fontWeight: 800, lineHeight: 1.2 },
             h3: { fontSize: "1.75rem", fontWeight: 700, lineHeight: 1.2 },
             h4: { fontSize: "1.5rem", fontWeight: 700, lineHeight: 1.3 },
             h5: { fontSize: "1.25rem", fontWeight: 700, lineHeight: 1.3 },
             h6: { fontSize: "1.1rem", fontWeight: 600, lineHeight: 1.5 },
-            body1: { fontSize: "1rem", fontWeight: 400, lineHeight: 1.7 },
-            body2: { fontSize: "0.875rem", fontWeight: 400, lineHeight: 1.7 },
-            button: { fontWeight: 700 },
-            overline: { fontSize: "0.8rem", fontWeight: 700, letterSpacing: "0.16em", lineHeight: 1.5 },
             heroTitle: {
                 fontSize: "clamp(3.2rem, 7.5vw, 6.5rem)",
                 fontWeight: 800,
                 letterSpacing: "-0.055em",
                 lineHeight: 0.98,
             },
+            overline: { fontSize: "0.8rem", fontWeight: 700, letterSpacing: "0.16em", lineHeight: 1.5 },
             pageIntro: {
-                fontSize: { xs: "1rem", md: "1.2rem" },
+                fontSize: { md: "1.2rem", xs: "1rem" },
                 fontWeight: 400,
                 lineHeight: 1.7,
             },
@@ -151,7 +157,7 @@ export function ThemeContextProvider({ children }: { readonly children: ReactNod
                 textTransform: "uppercase",
             },
             timelineTitle: {
-                fontSize: { xs: "1.2rem", md: "1.5rem" },
+                fontSize: { md: "1.5rem", xs: "1.2rem" },
                 fontWeight: 700,
                 lineHeight: 1.3,
             },
