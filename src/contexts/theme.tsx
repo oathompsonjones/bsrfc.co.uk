@@ -8,8 +8,8 @@ import {
     darken,
     responsiveFontSizes,
 } from "@mui/material";
-import type { TypographyStyle, TypographyStyleOptions } from "@mui/material/styles";
 import type { ReactNode } from "react";
+import type { TypographyStyle } from "@mui/material/styles";
 // Keep this default import after named imports to satisfy the configured import syntax order.
 // eslint-disable-next-line sort-imports
 import DefaultPropsProvider from "@mui/material/DefaultPropsProvider";
@@ -26,10 +26,10 @@ declare module "@mui/material/styles" {
 
     // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
     interface TypographyVariantsOptions {
-        heroTitle?: TypographyStyleOptions;
-        pageIntro?: TypographyStyleOptions;
-        sectionEyebrow?: TypographyStyleOptions;
-        timelineTitle?: TypographyStyleOptions;
+        heroTitle?: CustomTypographyStyle;
+        pageIntro?: CustomTypographyStyle;
+        sectionEyebrow?: CustomTypographyStyle;
+        timelineTitle?: CustomTypographyStyle;
     }
 }
 
@@ -47,6 +47,10 @@ const BLUE = "#003ca5";
 const PINK = "#e01583";
 const WHITE = "#ffffff";
 const BLACK = "#121212";
+
+type CustomTypographyStyle = Omit<TypographyStyle, "fontSize"> & {
+    fontSize?: Record<string, number | string> | TypographyStyle["fontSize"];
+};
 
 /**
  * Provides the theme to the application.
