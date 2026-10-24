@@ -180,7 +180,7 @@ export default function History(): ReactNode {
     return (
         <>
             <Stack spacing={2}>
-                <Typography variant="sectionEyebrow">
+                <Typography variant="overline">
                     Our heritage
                 </Typography>
 

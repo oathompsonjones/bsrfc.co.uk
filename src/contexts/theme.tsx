@@ -17,15 +17,11 @@ declare module "@mui/material/styles" {
     interface TypographyVariants {
         heroTitle: TypographyStyle;
         pageIntro: TypographyStyle;
-        sectionEyebrow: TypographyStyle;
-        timelineTitle: TypographyStyle;
     }
 
     interface TypographyVariantsOptions {
         heroTitle?: CustomTypographyStyle;
         pageIntro?: CustomTypographyStyle;
-        sectionEyebrow?: CustomTypographyStyle;
-        timelineTitle?: CustomTypographyStyle;
     }
 }
 
@@ -33,8 +29,6 @@ declare module "@mui/material/Typography" {
     interface TypographyPropsVariantOverrides {
         heroTitle: true;
         pageIntro: true;
-        sectionEyebrow: true;
-        timelineTitle: true;
     }
 }
 /* eslint-enable @typescript-eslint/consistent-type-definitions */
@@ -148,18 +142,6 @@ export function ThemeContextProvider({ children }: { readonly children: ReactNod
                 fontSize: { md: "1.2rem", xs: "1rem" },
                 fontWeight: 400,
                 lineHeight: 1.7,
-            },
-            sectionEyebrow: {
-                fontSize: "0.8rem",
-                fontWeight: 700,
-                letterSpacing: "0.16em",
-                lineHeight: 1.5,
-                textTransform: "uppercase",
-            },
-            timelineTitle: {
-                fontSize: { md: "1.5rem", xs: "1.2rem" },
-                fontWeight: 700,
-                lineHeight: 1.3,
             },
         }),
         zIndex: { appBar: 10, fab: 10 },

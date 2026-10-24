@@ -57,7 +57,8 @@ export function Timeline({ events, categories }: Readonly<{ events: Event[]; cat
 
                                     <Typography
                                         component="h2"
-                                        variant="timelineTitle"
+                                        sx={{ fontSize: { md: "1.5rem", xs: "1.2rem" } }}
+                                        variant="h5"
                                     >
                                         {event.title}
                                     </Typography>
