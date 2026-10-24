@@ -16,19 +16,16 @@ import type { TypographyStyle } from "@mui/material/styles";
 declare module "@mui/material/styles" {
     interface TypographyVariants {
         heroTitle: TypographyStyle;
-        pageIntro: TypographyStyle;
     }
 
     interface TypographyVariantsOptions {
-        heroTitle?: CustomTypographyStyle;
-        pageIntro?: CustomTypographyStyle;
+        heroTitle?: TypographyStyle;
     }
 }
 
 declare module "@mui/material/Typography" {
     interface TypographyPropsVariantOverrides {
         heroTitle: true;
-        pageIntro: true;
     }
 }
 /* eslint-enable @typescript-eslint/consistent-type-definitions */
@@ -37,10 +34,6 @@ const BLUE = "#003ca5";
 const PINK = "#e01583";
 const WHITE = "#ffffff";
 const BLACK = "#121212";
-
-type CustomTypographyStyle = Omit<TypographyStyle, "fontSize"> & {
-    fontSize?: Record<string, number | string> | TypographyStyle["fontSize"];
-};
 
 /**
  * Provides the theme to the application.
@@ -138,11 +131,6 @@ export function ThemeContextProvider({ children }: { readonly children: ReactNod
                 lineHeight: 0.98,
             },
             overline: { fontSize: "0.8rem", fontWeight: 700, letterSpacing: "0.16em", lineHeight: 1.5 },
-            pageIntro: {
-                fontSize: { md: "1.2rem", xs: "1rem" },
-                fontWeight: 400,
-                lineHeight: 1.7,
-            },
         }),
         zIndex: { appBar: 10, fab: 10 },
     }), { breakpoints: ["xs", "sm", "md", "lg", "xl"] });

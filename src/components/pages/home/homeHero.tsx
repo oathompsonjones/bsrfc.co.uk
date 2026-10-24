@@ -77,8 +77,8 @@ export function HomeHero(): ReactNode {
                 <RotatingText tick={tick} transition={transition} />
 
                 <Typography
-                    sx={{ color: "lightgrey", maxWidth: "34rem", mt: 3 }}
-                    variant="pageIntro"
+                    sx={{ color: "lightgrey", fontSize: { md: "1.2rem", xs: "1rem" }, maxWidth: "34rem", mt: 3 }}
+                    variant="body1"
                 >
                     Rugby for every age and ability. Find your team, meet your community and be part of
                     BSRFC.

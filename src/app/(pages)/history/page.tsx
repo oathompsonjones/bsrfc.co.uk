@@ -192,7 +192,7 @@ export default function History(): ReactNode {
                     A century of rugby
                 </Typography>
 
-                <Typography sx={{ maxWidth: 680, opacity: 0.9 }} variant="pageIntro">
+                <Typography sx={{ maxWidth: 680, opacity: 0.9 }} variant="body1">
                     From our beginnings in 1921 to the generations of players, volunteers, and supporters who
                     make Silver Leys home. Discover the milestones that have shaped Bishop&apos;s Stortford RFC.
                 </Typography>

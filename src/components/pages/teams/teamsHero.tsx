@@ -70,7 +70,7 @@ export function TeamsHero(): ReactNode {
                 </Typography>
                 <Typography
                     sx={{ color: "lightgrey", maxWidth: "40rem", pt: 1 }}
-                    variant="pageIntro"
+                    variant="body1"
                 >
                     From first steps on the pitch to senior rugby, there&apos;s a place for everyone at Bishop&apos;s
                     Stortford.
