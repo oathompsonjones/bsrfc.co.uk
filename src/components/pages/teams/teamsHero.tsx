@@ -53,7 +53,7 @@ export function TeamsHero(): ReactNode {
             >
                 <Typography
                     component="p"
-                    sx={{ color: "secondary.main", fontWeight: 700, letterSpacing: "0.16em" }}
+                    sx={{ color: "secondary.main" }}
                     variant="overline"
                 >
                     #ONECLUB
@@ -63,17 +63,14 @@ export function TeamsHero(): ReactNode {
                     sx={{
                         color: "common.white",
                         fontSize: { md: "clamp(3rem, 6vw, 5rem)", xs: "clamp(2.75rem, 12vw, 3.5rem)" },
-                        fontWeight: 800,
-                        letterSpacing: "-0.05em",
-                        lineHeight: 1,
                     }}
-                    variant="h1"
+                    variant="heroTitle"
                 >
                     Our Teams
                 </Typography>
                 <Typography
-                    sx={{ color: "lightgrey", lineHeight: 1.7, maxWidth: "40rem", pt: 1 }}
-                    variant="body1"
+                    sx={{ color: "lightgrey", maxWidth: "40rem", pt: 1 }}
+                    variant="pageIntro"
                 >
                     From first steps on the pitch to senior rugby, there&apos;s a place for everyone at Bishop&apos;s
                     Stortford.
