@@ -44,6 +44,7 @@ export function TeamSection({ teams, title }: { readonly teams?: Team[][]; reado
                                 flex: "1 1 10rem",
                                 gridColumn: "auto",
                                 minHeight: { md: 132, xs: 112 },
+                                textDecoration: "none",
                                 transition: "transform 180ms ease, border-color 180ms ease",
                             }}
                         >

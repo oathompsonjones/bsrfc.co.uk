@@ -30,7 +30,7 @@ export function Info(): ReactNode {
                     Silver Leys, Hadham Road, Bishop's Stortford, Hertfordshire, CM23 2QE, UK
                 </Typography>
                 <Typography variant="caption">
-                    01279 652092
+                    <Link href="tel:+441279652092">01279 652092</Link>
                 </Typography>
                 <Typography variant="caption">
                     <Link href="mailto:secretary@bsrfc.co.uk">secretary@bsrfc.co.uk</Link>
@@ -47,7 +47,9 @@ export function Info(): ReactNode {
             </Stack>
             <Typography variant="caption">
                 Website designed & developed by{" "}
-                <Link href="https://oathompsonjones.co.uk" style={{ fontWeight: "bold" }}>Oliver Jones</Link>.
+                <Link href="https://oathompsonjones.co.uk" style={{ fontWeight: "bold", textDecoration: "none" }}>
+                    Oliver Jones
+                </Link>.
             </Typography>
         </Stack>
     );
