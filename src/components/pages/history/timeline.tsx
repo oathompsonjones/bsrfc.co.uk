@@ -50,7 +50,7 @@ export function Timeline({ events, categories }: Readonly<{ events: Event[]; cat
                                 <Stack spacing={1.5}>
                                     <Typography
                                         color="primary.main"
-                                        sx={{ fontWeight: 800, letterSpacing: 1.5, lineHeight: 1.5 }}
+                                        
                                         variant="overline"
                                     >
                                         {event.year}
@@ -58,13 +58,12 @@ export function Timeline({ events, categories }: Readonly<{ events: Event[]; cat
 
                                     <Typography
                                         component="h2"
-                                        sx={{ fontSize: { md: "1.5rem", xs: "1.2rem" }, fontWeight: 700 }}
-                                        variant="h5"
+                                        variant="timelineTitle"
                                     >
                                         {event.title}
                                     </Typography>
 
-                                    <Typography color="text.secondary" sx={{ lineHeight: 1.8 }} variant="body1">
+                                    <Typography color="text.secondary" variant="body1">
                                         {event.description}
                                     </Typography>
                                 </Stack>
