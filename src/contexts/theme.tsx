@@ -8,15 +8,12 @@ import {
     darken,
     responsiveFontSizes,
 } from "@mui/material";
+import DefaultPropsProvider from "@mui/material/DefaultPropsProvider";
 import type { ReactNode } from "react";
 import type { TypographyStyle } from "@mui/material/styles";
-// Keep this default import after named imports to satisfy the configured import syntax order.
-// eslint-disable-next-line sort-imports
-import DefaultPropsProvider from "@mui/material/DefaultPropsProvider";
 
-// MUI's module augmentation API relies on interfaces so these can merge with its declarations.
+/* eslint-disable @typescript-eslint/consistent-type-definitions */
 declare module "@mui/material/styles" {
-    // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
     interface TypographyVariants {
         heroTitle: TypographyStyle;
         pageIntro: TypographyStyle;
@@ -24,7 +21,6 @@ declare module "@mui/material/styles" {
         timelineTitle: TypographyStyle;
     }
 
-    // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
     interface TypographyVariantsOptions {
         heroTitle?: CustomTypographyStyle;
         pageIntro?: CustomTypographyStyle;
@@ -34,7 +30,6 @@ declare module "@mui/material/styles" {
 }
 
 declare module "@mui/material/Typography" {
-    // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
     interface TypographyPropsVariantOverrides {
         heroTitle: true;
         pageIntro: true;
@@ -42,6 +37,7 @@ declare module "@mui/material/Typography" {
         timelineTitle: true;
     }
 }
+/* eslint-enable @typescript-eslint/consistent-type-definitions */
 
 const BLUE = "#003ca5";
 const PINK = "#e01583";
