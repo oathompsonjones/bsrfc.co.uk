@@ -366,8 +366,8 @@ export function Sponsors(): ReactNode {
     const [sequenceWidth, setSequenceWidth] = useState(0);
     const animationDuration = 180_000;
 
-    const pause = useCallback((): void => animationRef.current?.pause(), [animationRef]);
-    const play = useCallback((): void => animationRef.current?.play(), [animationRef]);
+    const pause = useCallback((): void => animationRef.current?.pause(), []);
+    const play = useCallback((): void => animationRef.current?.play(), []);
 
     useEffect(() => {
         const container = containerRef.current;
@@ -399,8 +399,9 @@ export function Sponsors(): ReactNode {
 
     useEffect(() => {
         const track = trackRef.current;
+        const container = containerRef.current;
 
-        if (!track || sequenceWidth <= 0) {
+        if (!track || !container || sequenceWidth <= 0) {
             animationRef.current?.cancel();
             animationRef.current = null;
 
@@ -416,25 +417,9 @@ export function Sponsors(): ReactNode {
 
         animationRef.current = animation;
 
-        return (): void => {
-            animation.cancel();
-
-            if (animationRef.current === animation)
-                animationRef.current = null;
-        };
-    }, [sequenceWidth]);
-
-    useEffect(() => {
-        const container = containerRef.current;
-
-        if (!container)
-            return (): void => undefined;
-
         const handleWheel = (event: WheelEvent): void => {
-            const animation = animationRef.current;
-
             // Only handle horizontal trackpad gestures.
-            if (!animation || sequenceWidth <= 0 || event.deltaX === 0)
+            if (event.deltaX === 0)
                 return;
 
             event.preventDefault();
@@ -450,7 +435,13 @@ export function Sponsors(): ReactNode {
 
         container.addEventListener("wheel", handleWheel, { passive: false });
 
-        return (): void => container.removeEventListener("wheel", handleWheel);
+        return (): void => {
+            container.removeEventListener("wheel", handleWheel);
+            animation.cancel();
+
+            if (animationRef.current === animation)
+                animationRef.current = null;
+        };
     }, [sequenceWidth]);
 
     return (
@@ -494,7 +485,7 @@ export function Sponsors(): ReactNode {
                                         }}
                                     />
                                 </Link>
-                                <Divider orientation="vertical" sx={{ height: "50%", opacity: 0.5, px: 1 }} />
+                                <Divider orientation="vertical" sx={{ height: "75%", opacity: 0.5, px: 1 }} />
                             </Box>
                         ))}
                     </Stack>
