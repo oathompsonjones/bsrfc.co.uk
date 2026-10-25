@@ -1,8 +1,9 @@
 import { Divider, Grid, Typography } from "@mui/material";
+import { Fragment, type ReactNode } from "react";
 import { ContactCard } from "components/pages/contact/contactCard";
-import { Fragment } from "react";
+import { Hero } from "components/hero";
 import Link from "next/link";
-import type { ReactNode } from "react";
+import firstXv from "assets/images/1st-xv-26-27.jpg";
 
 export type Person = {
     name: string;
@@ -188,8 +189,12 @@ const contacts: ContactGroup[] = [
 export default function Contact(): ReactNode {
     return (
         <>
-            <Typography variant="h1">Contact Us</Typography>
-            <Typography>
+            <Hero
+                image={{ alt: "Bishop's Stortford RFC first XV, 2026–27 season", image: firstXv }}
+                overline="Get in touch"
+                title="Contact Us"
+            />
+            <Typography sx={{ mb: 2 }}>
                 For general enquiries, please contact us at{" "}
                 <Link href="mailto:secretary@bsrfc.co.uk">secretary@bsrfc.co.uk</Link>.
             </Typography>

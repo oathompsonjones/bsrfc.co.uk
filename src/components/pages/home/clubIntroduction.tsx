@@ -12,7 +12,7 @@ import type { ReactNode } from "react";
  */
 export function ClubIntroduction(): ReactNode {
     return (
-        <Box className="full-width" component="section" sx={{ color: "common.white", py: { md: 10, xs: 7 } }}>
+        <Box className="full-width" component="section" sx={{ color: "common.white", pb: { md: 10, xs: 7 } }}>
             <Box sx={{ maxWidth: "70rem", mx: "auto", px: { md: 5, xs: 3 }, width: "100%" }}>
                 <Stack
                     direction={{ md: "row", xs: "column" }}

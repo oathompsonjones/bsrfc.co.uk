@@ -1,33 +1,26 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import type { ReactNode } from "react";
 
-const words = ["town", "community", "club"];
+export const clubWords = ["town", "community", "club"];
 
 /**
- * The homepage hero heading, with a cycling final word.
- * @param props - The component props.
- * @param props.tick - The current tick count for the word rotation.
- * @param props.transition - The CSS transition for the word rotation.
- * @returns The hero heading.
+ * Displays a prefix followed by one word from a vertically rotating word list.
+ * @param props - The rotating word content and animation state.
+ * @param props.prefix - Text placed before the rotating word.
+ * @param props.words - The words to cycle through.
+ * @param props.tick - The current word index.
+ * @param props.transition - The CSS transform transition.
+ * @returns The inline animated title content.
  */
-export function RotatingText({ tick, transition }: Readonly<{
+export function RotatingWords({ prefix, tick, transition, words }: Readonly<{
+    prefix: string;
     tick: number;
     transition: string;
+    words: string[];
 }>): ReactNode {
     return (
-        <Typography
-            component="h1"
-            sx={{
-                color: "common.white",
-                fontSize: { md: "clamp(4rem, 7.5vw, 6.5rem)", xs: "clamp(3.2rem, 13vw, 4.5rem)" },
-                fontWeight: 800,
-                letterSpacing: "-0.055em",
-                lineHeight: 0.98,
-                maxWidth: "14ch",
-            }}
-            variant="h1"
-        >
-            One{" "}
+        <>
+            {prefix}{" "}
             <Box
                 component="span"
                 sx={{
@@ -75,6 +68,6 @@ export function RotatingText({ tick, transition }: Readonly<{
                     })}
                 </Box>
             </Box>
-        </Typography>
+        </>
     );
 }

@@ -17,7 +17,7 @@ type Team = {
  */
 export function TeamSection({ teams, title }: { readonly teams?: Team[][]; readonly title: string; }): ReactNode {
     return (
-        <Box component="section" sx={{ mt: { md: 7, xs: 5 } }}>
+        <Box component="section">
             <Box sx={{ alignItems: "center", display: "flex", gap: 2, mb: 2.5 }}>
                 <Box sx={{ bgcolor: "secondary.main", height: 2, width: 28 }} />
                 <Typography

@@ -3,8 +3,10 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { useCallback, useState } from "react";
 import { CategoryFilter } from "components/pages/history/categoryFilter";
+import { Hero } from "components/hero";
 import type { ReactNode } from "react";
 import { Timeline } from "components/pages/history/timeline";
+import firstXvHuddle from "assets/images/1st-xv-huddle.jpg";
 
 export type Event = {
     categories: string[];
@@ -179,24 +181,16 @@ export default function History(): ReactNode {
 
     return (
         <>
-            <Stack spacing={2}>
-                <Typography variant="overline">
-                    Our heritage
-                </Typography>
-
-                <Typography
-                    component="h1"
-                    sx={{ fontSize: { md: "3.75rem", xs: "2.5rem" } }}
-                    variant="h2"
-                >
-                    A century of rugby
-                </Typography>
-
-                <Typography sx={{ maxWidth: 680, opacity: 0.9 }} variant="body1">
-                    From our beginnings in 1921 to the generations of players, volunteers, and supporters who
-                    make Silver Leys home. Discover the milestones that have shaped Bishop&apos;s Stortford RFC.
-                </Typography>
-            </Stack>
+            <Hero
+                image={{
+                    alt: "Bishop's Stortford RFC players together in a huddle",
+                    image: firstXvHuddle,
+                }}
+                intro={"From our beginnings in 1921 to the generations of players, volunteers, and supporters who " +
+                    "make Silver Leys home. Discover the milestones that have shaped Bishop's Stortford RFC."}
+                overline="Our heritage"
+                title="A century of rugby"
+            />
 
             <CategoryFilter
                 categories={allCategories}
