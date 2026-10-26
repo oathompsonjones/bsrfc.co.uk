@@ -27,7 +27,7 @@ export function ContactCard({ person }: { readonly person: Person; }): ReactNode
                     </Avatar>
                 </CardMedia>
                 <Typography variant="h2">{person.name}</Typography>
-                <Typography variant="subtitle1">{person.roles.join(", ")}</Typography>
+                <Typography variant="h5">{person.roles.join(", ")}</Typography>
                 {person.email !== undefined && (
                     <Typography>
                         <Link href={`mailto:${person.email}`}>{person.email}</Link>

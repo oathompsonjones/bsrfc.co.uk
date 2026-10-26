@@ -20,14 +20,8 @@ type ContactGroup = {
 
 const contacts: ContactGroup[] = [
     {
-        category: "Club Leadership",
+        category: "Executive Committee",
         people: [
-            {
-                email: "president@bsrfc.co.uk",
-                name: "David Walker",
-                phone: "07970 551378",
-                roles: ["President", "Discipline Secretary", "Club Disciplinary Officer"],
-            },
             {
                 email: "chair@bsrfc.co.uk",
                 name: "Gareth Tracey",
@@ -47,37 +41,56 @@ const contacts: ContactGroup[] = [
                 roles: ["Honorary Secretary"],
             },
             {
-                email: "tradingfinance@bsrfc.co.uk",
-                name: "James Andrews",
-                roles: ["Honorary Treasurer"],
-            },
-            {
                 email: "membership@bsrfc.co.uk",
                 name: "Geoff Pedersen",
-                phone: "01279 652092",
                 roles: ["Membership Secretary"],
             },
-        ],
-    },
-    {
-        category: "Senior Rugby",
-        people: [
             {
                 email: "seniormenschair@bsrfc.co.uk",
                 name: "Chetan Sharma",
                 phone: "07341 344337",
-                roles: ["Senior Men's Chair", "Adult Male Contact (19+)"],
+                roles: ["Senior Men's Chair"],
             },
             {
                 email: "womensmanager@bsrfc.co.uk",
                 name: "Donna McDonald",
                 phone: "07854 220433",
-                roles: ["Women and Girls Chair", "Women and Girls Contact"],
+                roles: ["Women and Girls Chair"],
+            },
+            {
+                name: "Jim Tanfield",
+                phone: "07795 417258",
+                roles: ["Youth Rugby Chair"],
+            },
+            {
+                name: "Nikky Wilkins",
+                phone: "07716 705603",
+                roles: ["Mini Rugby Chair", "Girls Contact (Under 18s)"],
+            },
+            {
+                name: "Jake Tiley",
+                roles: ["Non-Contact Rugby"],
             },
         ],
     },
     {
-        category: "Youth and Mini Rugby",
+        category: "Club Leadership",
+        people: [
+            {
+                email: "president@bsrfc.co.uk",
+                name: "Dave Walker",
+                phone: "07970 551378",
+                roles: ["President", "Disciplinary Officer"],
+            },
+            {
+                email: "tradingfinance@bsrfc.co.uk",
+                name: "James Andrews",
+                roles: ["Honorary Treasurer"],
+            },
+        ],
+    },
+    {
+        category: "Colts",
         people: [
             {
                 name: "Matt Woodford",
@@ -89,31 +102,22 @@ const contacts: ContactGroup[] = [
                 phone: "07779 808419",
                 roles: ["Colts Manager"],
             },
-            {
-                name: "Jim Tanfield",
-                phone: "07795 417258",
-                roles: ["Youth Rugby Chair", "Youth Contact (12–18)"],
-            },
-            {
-                name: "Nikky Wilkins",
-                phone: "07716 705603",
-                roles: ["Mini Rugby Chair", "Mini Contact (5–11)", "Girls Contact (Under 18s)"],
-            },
         ],
     },
     {
         category: "Club Operations",
         people: [
             {
-                name: "Darian Compton",
-                phone: "01279 652092",
-                roles: ["General Enquiries Contact"],
+                name: "Mike Hamer",
+                phone: "07905 501017",
+                roles: ["Volunteer Co-ordinator"],
             },
             {
                 name: "Mehmet Mehmet",
-                roles: ["Fixture Secretary", "Data"],
+                roles: ["RugbySafe Lead", "Fixture Secretary"],
             },
             {
+                email: "safeguarding@bsrfc.co.uk",
                 name: "Claire Sanday",
                 roles: ["Safeguarding"],
             },
@@ -164,22 +168,6 @@ const contacts: ContactGroup[] = [
             },
         ],
     },
-    {
-        category: "Other Enquiries",
-        people: [
-            {
-                email: "membership@bsrfc.co.uk",
-                name: "Geoff Pedersen",
-                phone: "01279 652092",
-                roles: ["Membership and Club Data"],
-            },
-            {
-                name: "Donna McDonald",
-                phone: "07854 220433",
-                roles: ["RugbySafe Lead"],
-            },
-        ],
-    },
 ];
 
 /**
@@ -205,11 +193,13 @@ export default function Contact(): ReactNode {
                         <Grid size={12}>
                             <Typography variant="h2">{category.category}</Typography>
                         </Grid>
-                        {category.people.map((person) => (
-                            <Grid key={person.name} size={4}>
-                                <ContactCard person={person} />
-                            </Grid>
-                        ))}
+                        <Grid container size={12} spacing={2} sx={{ justifyContent: "center" }}>
+                            {category.people.map((person) => (
+                                <Grid key={person.name} size={{ md: 4, sm: 6, xs: 12 }}>
+                                    <ContactCard person={person} />
+                                </Grid>
+                            ))}
+                        </Grid>
                     </Fragment>
                 ))}
             </Grid>
