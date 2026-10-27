@@ -39,6 +39,9 @@
             "styles/*": [
                 "./src/styles/*"
             ],
+            "utils": [
+                "./src/utils"
+            ],
         },
         "isolatedModules": true,
         "preserveConstEnums": true,

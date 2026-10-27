@@ -81,6 +81,7 @@ export function ThemeContextProvider({ children }: { readonly children: ReactNod
             ...basePalette,
         },
         typography: (palette) => ({
+            fontFamily: "var(--font-inter), sans-serif",
             ...Object.fromEntries([
                 "h1",
                 "h2",
