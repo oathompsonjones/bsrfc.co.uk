@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { teamSections } from "content/teams";
 
 const baseUrl = "https://bsrfc.co.uk";
 
@@ -14,13 +15,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
         "/history",
         "/news",
         "/teams",
-        "/teams/men",
-        "/teams/women",
-        "/teams/colts",
-        "/teams/youth",
-        "/teams/girls",
-        "/teams/minis",
-        "/teams/touch",
+        ...teamSections.flatMap(({ slug, teams }) => [
+            `/teams/${slug}`,
+            ...teams.map(({ slug: teamSlug }) => `/teams/${slug}/${teamSlug}`),
+        ]),
     ];
 
     return paths.map((path) => ({ url: new URL(path, baseUrl).toString() }));

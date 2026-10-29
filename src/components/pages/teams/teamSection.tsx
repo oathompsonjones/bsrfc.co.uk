@@ -1,3 +1,5 @@
+"use client";
+
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import Link from "next/link";
 import type { ReactNode } from "react";

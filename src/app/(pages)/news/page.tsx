@@ -1,5 +1,5 @@
 import { Hero } from "components/hero";
-import { PageComingSoon } from "components/pageComingSoon";
+import { PageCms } from "components/pageCms";
 import type { ReactNode } from "react";
 import leicester from "assets/images/1st-xv-leicester.jpg";
 
@@ -16,7 +16,7 @@ export default function NewsPage(): ReactNode {
                 overline="Latest from the club"
                 title="News & Media"
             />
-            <PageComingSoon />
+            <PageCms pageTitle="News & Media" />
         </>
     );
 }

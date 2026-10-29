@@ -35,7 +35,8 @@ const navItems: NavItemData[] = [
         href: "/teams",
         label: "Teams",
         links: [
-            { href: "/teams/men", label: "Men" },
+            { href: "/teams/men", label: "Senior Men" },
+            { href: "/teams/social-men", label: "Social Men" },
             { href: "/teams/women", label: "Women" },
             { href: "/teams/colts", label: "Colts" },
             { href: "/teams/youth", label: "Youth" },
