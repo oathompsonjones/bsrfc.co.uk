@@ -20,14 +20,12 @@ const logoSize = 150;
 const navItems: NavItemData[] = [
     { href: "/", label: "Home" },
     {
-        href: "/club",
+        href: "/about",
         label: "Club",
         links: [
-            { href: "/about", label: "About the Club" },
-            { href: "/committee", label: "Committee" },
-            { href: "/history", label: "Club History" },
             { href: "/contact", label: "Contact" },
-            { href: "/safeguarding", label: "Safeguarding & Policies" },
+            { href: "/history", label: "History" },
+            { href: "/safeguarding", label: "Safeguarding" },
             { href: "/find-us", label: "Find Us" },
         ],
     },
@@ -47,30 +45,25 @@ const navItems: NavItemData[] = [
     },
     {
         href: "/news",
-        label: "News & Media",
+        label: "News",
         links: [
-            { href: "/news", label: "News" },
             { href: "/match-reports", label: "Match Reports" },
-            { href: "/gallery", label: "Gallery" },
             { href: "/highlights", label: "Highlights" },
+            { href: "/gallery", label: "Gallery" },
         ],
     },
     {
         href: "/membership",
         label: "Membership",
         links: [
-            { href: "/membership", label: "Membership Information" },
-            { href: "/join", label: "Join the Club" },
+            { href: "/join", label: "Join" },
             { href: "/volunteers", label: "Volunteers" },
         ],
     },
     {
         href: "/events",
         label: "Events",
-        links: [
-            { href: "/events", label: "Upcoming Events" },
-            { href: "/venue-hire", label: "Venue Hire" },
-        ],
+        links: [{ href: "/venue-hire", label: "Venue Hire" }],
     },
     { href: "https://bsrfcshop.co.uk", label: "Shop" },
     { href: "https://bsrfc.club", label: "Sponsors" },
