@@ -59,7 +59,7 @@ export function ClubIntroduction(): ReactNode {
                         <Button
                             component={Link}
                             endIcon={<ArrowForward />}
-                            href="/club/about"
+                            href="/about"
                             sx={{ alignSelf: "flex-start", border: "1px solid lightgrey", px: 2 }}
                         >
                             About the club
