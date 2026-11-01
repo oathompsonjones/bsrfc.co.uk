@@ -13,10 +13,10 @@ const nextConfig = {
         return Object.entries({
             "business-directory": "https://bsrfc.club",
             facebook: "https://www.facebook.com/BishopsStortfordRugbyClub",
-            "find-us": "https://www.google.com/maps/search/?api=1&query=" +
-                "Bishop's+Stortford+Rugby+Club,+Silver+Leys,+Hadham+Rd,+Bishop's+Stortford+CM23+2QE",
             gms: "https://gms.rfu.com/gms/Account/Login?OnComplete=ClubsiteSignIn_www.bsrfc.co.uk&OrganisationId=1770",
             instagram: "https://www.instagram.com/bsrfc",
+            location: "https://www.google.com/maps/search/?api=1&query=" +
+                "Bishop's+Stortford+Rugby+Club,+Silver+Leys,+Hadham+Rd,+Bishop's+Stortford+CM23+2QE",
             shop: "https://bsrfcshop.co.uk",
             twitter: "https://x.com/BSRUGBY",
             x: "https://x.com/BSRUGBY",

@@ -14,9 +14,9 @@ export default function Error({ error, reset }: { readonly error: Error; readonl
     console.error(error);
 
     return (
-        <>
+        <div>
             <h2>Error 500 - Internal server error</h2>
             <p>Click <a onClick={reset}>here</a> to try again.</p>
-        </>
+        </div>
     );
 }
