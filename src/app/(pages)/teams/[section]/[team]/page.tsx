@@ -5,10 +5,6 @@ import type { ReactNode } from "react";
 import huddle from "assets/images/1st-xv-huddle.jpg";
 import { notFound } from "next/navigation";
 
-type TeamPageProps = {
-    readonly params: Promise<{ section: string; team: string; }>;
-};
-
 export const dynamicParams = false;
 
 /**
@@ -24,7 +20,9 @@ export function generateStaticParams(): Array<{ section: string; team: string; }
  * @param props - Contains the URL segments used to identify a team's section and page.
  * @returns The team page.
  */
-export default async function TeamRoute(props: TeamPageProps): Promise<ReactNode> {
+export default async function TeamRoute(props: Readonly<{
+    params: Promise<{ section: string; team: string; }>;
+}>): Promise<ReactNode> {
     const { params } = props;
     const { section: sectionSlug, team: teamSlug } = await params;
     const section = getTeamSection(sectionSlug);
@@ -33,7 +31,7 @@ export default async function TeamRoute(props: TeamPageProps): Promise<ReactNode
     if (section === undefined || team === undefined)
         notFound();
 
-    const title = `${section.title}: ${team.title}`;
+    const title = <>{section.title}: {team.title}</>;
 
     return (
         <>

@@ -2,6 +2,7 @@ import { getTeamSection, teamSections } from "content/teams";
 import { Hero } from "components/hero";
 import { PageCms } from "components/pageCms";
 import type { ReactNode } from "react";
+import type { Team } from "components/pages/teams/teamSection";
 import { TeamSection } from "components/pages/teams/teamSection";
 import huddle from "assets/images/1st-xv-huddle.jpg";
 import { notFound } from "next/navigation";
@@ -33,7 +34,7 @@ export default async function SectionRoute(props: SectionPageProps): Promise<Rea
     if (section === undefined)
         notFound();
 
-    const teamRows: Array<Array<{ link: string; title: string; }>> = [];
+    const teamRows: Team[][] = [];
 
     for (let index = 0; index < section.teams.length; index += 3) {
         teamRows.push(section.teams.slice(index, index + 3).map((team) => ({
@@ -46,11 +47,11 @@ export default async function SectionRoute(props: SectionPageProps): Promise<Rea
         <>
             <Hero
                 image={{ alt: "Bishop's Stortford RFC players together in a huddle", image: huddle }}
-                intro={section.description}
+                intro={section.subtitle}
                 overline="Bishop's Stortford RFC"
                 title={section.title}
             />
-            {teamRows.length > 0 && <TeamSection teams={teamRows} title={`${section.title} teams`} />}
+            {teamRows.length > 0 && <TeamSection teams={teamRows} title={<> {section.title} teams</>} />}
             <PageCms pageTitle={section.title} />
         </>
     );

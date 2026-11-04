@@ -4,7 +4,7 @@ import { Box, Card, CardContent, Typography } from "@mui/material";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-type Team = {
+export type Team = {
     link?: string;
     title: NonNullable<ReactNode>;
     subtitle?: NonNullable<ReactNode>;
@@ -17,7 +17,10 @@ type Team = {
  * @param props.title - The section heading.
  * @returns A heading with the section's teams beneath it.
  */
-export function TeamSection({ teams, title }: { readonly teams?: Team[][]; readonly title: string; }): ReactNode {
+export function TeamSection({ teams, title }: Readonly<{
+    teams?: Team[][];
+    title: NonNullable<ReactNode>;
+}>): ReactNode {
     return (
         <Box component="section">
             <Box sx={{ alignItems: "center", display: "flex", gap: 2, mb: 2.5 }}>
@@ -36,7 +39,7 @@ export function TeamSection({ teams, title }: { readonly teams?: Team[][]; reado
                         <Card
                             component={Link}
                             href={link ?? "#"}
-                            key={`${title}-${index}`}
+                            key={index}
                             sx={{
                                 borderTop: "3px solid",
                                 // This has to come after borderLeft to actually apply the border color correctly.

@@ -7,7 +7,7 @@ import type { ReactNode } from "react";
  * @param props.pageTitle - The title of the page being prepared.
  * @returns A centered CMS placeholder message.
  */
-export function PageCms({ pageTitle }: { readonly pageTitle: string; }): ReactNode {
+export function PageCms({ pageTitle }: Readonly<{ pageTitle: NonNullable<ReactNode>; }>): ReactNode {
     return (
         <Box
             aria-labelledby="page-cms-title"

@@ -10,16 +10,8 @@ import { teamSections } from "content/teams";
  */
 export default function Teams(): ReactNode {
     const rows = [
-        teamSections.slice(0, 4).map(({ description, slug, title }) => ({
-            link: `/teams/${slug}`,
-            subtitle: description,
-            title,
-        })),
-        teamSections.slice(4).map(({ description, slug, title }) => ({
-            link: `/teams/${slug}`,
-            subtitle: description,
-            title,
-        })),
+        teamSections.slice(0, 4).map((section) => ({ ...section, link: `/teams/${section.slug}` })),
+        teamSections.slice(4).map((section) => ({ ...section, link: `/teams/${section.slug}` })),
     ];
 
     return (

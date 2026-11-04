@@ -1,38 +1,41 @@
+import type { ReactNode } from "react";
+
 export type TeamPage = {
     slug: string;
-    title: string;
+    title: NonNullable<ReactNode>;
+    subtitle?: ReactNode;
 };
 
 export type TeamSection = {
-    description: string;
+    subtitle?: NonNullable<ReactNode>;
     slug: string;
     teams: TeamPage[];
-    title: string;
+    title: NonNullable<ReactNode>;
 };
 
 export const teamSections: TeamSection[] = [
     {
-        description: "The 1st and 2nd XVs",
         slug: "men",
+        subtitle: <>The 1<sup>st</sup> and 2<sup>nd</sup> XVs</>,
         teams: [
             { slug: "first-xv", title: "1st XV" },
-            { slug: "second-xv", title: "2nd XV" },
+            { slug: "second-xv", subtitle: "The Blues", title: "2nd XV" },
         ],
         title: "Senior Men",
     },
     {
-        description: "The 3rd, 4th, and 5th XVs",
         slug: "social-men",
+        subtitle: <>The 3<sup>rd</sup>, 4<sup>th</sup>, and 5<sup>th</sup> XVs</>,
         teams: [
-            { slug: "third-xv", title: "3rd XV" },
-            { slug: "fourth-xv", title: "4th XV" },
-            { slug: "fifth-xv", title: "5th XV" },
+            { slug: "third-xv", subtitle: "The Mitres", title: "3rd XV" },
+            { slug: "fourth-xv", subtitle: "The Chindits", title: "4th XV" },
+            { slug: "fifth-xv", subtitle: "The Abbotts", title: "5th XV" },
         ],
         title: "Social Men",
     },
     {
-        description: "The 1st and 2nd XVs",
         slug: "women",
+        subtitle: <>The 1<sup>st</sup> and 2<sup>nd</sup> XVs</>,
         teams: [
             { slug: "first-xv", title: "Women's 1st XV" },
             { slug: "second-xv", title: "Women's 2nd XV" },
@@ -40,16 +43,15 @@ export const teamSections: TeamSection[] = [
         title: "Women",
     },
     {
-        description: "Colts rugby, with A and B squads together",
         slug: "colts",
+        subtitle: "Under 17s and Under 18s",
         teams: [],
         title: "Colts",
     },
     {
-        description: "Youth rugby by age group, with A and B squads together",
         slug: "youth",
+        subtitle: "Under 12s to Under 16s",
         teams: [
-            { slug: "under-18", title: "Under 18s" },
             { slug: "under-16", title: "Under 16s" },
             { slug: "under-15", title: "Under 15s" },
             { slug: "under-14", title: "Under 14s" },
@@ -59,8 +61,8 @@ export const teamSections: TeamSection[] = [
         title: "Youth",
     },
     {
-        description: "Girls rugby by age group",
         slug: "girls",
+        subtitle: "Under 12s to Under 18s",
         teams: [
             { slug: "under-18", title: "Under 18 Girls" },
             { slug: "under-16", title: "Under 16 Girls" },
@@ -70,8 +72,8 @@ export const teamSections: TeamSection[] = [
         title: "Girls",
     },
     {
-        description: "Mini rugby by age group",
         slug: "minis",
+        subtitle: "Under 6s to Under 11s",
         teams: [
             { slug: "under-11", title: "Under 11s" },
             { slug: "under-10", title: "Under 10s" },
@@ -83,8 +85,8 @@ export const teamSections: TeamSection[] = [
         title: "Minis",
     },
     {
-        description: "Mixed touch rugby",
         slug: "touch",
+        subtitle: "Mixed touch rugby",
         teams: [],
         title: "Touch",
     },
