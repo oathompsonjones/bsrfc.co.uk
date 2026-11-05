@@ -71,7 +71,7 @@ export function Info(): ReactNode {
                     ))}
                 </Stack>
             </Stack>
-            <Stack spacing={1}>
+            <Stack>
                 <Typography variant="caption">© {copyrightYear} Bishop's Stortford Rugby Football Club</Typography>
                 <Typography variant="caption">Company No. 09612222</Typography>
                 <Typography variant="caption">Charity No. 1162479</Typography>
