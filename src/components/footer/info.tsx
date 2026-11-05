@@ -27,9 +27,9 @@ const socials = [
 ];
 
 const legalLinks = [
-    { href: "/privacy", icon: <Policy sx={{ fontSize: "1.5em" }} />, label: "Privacy Policy" },
-    { href: "/terms", icon: <PrivacyTip sx={{ fontSize: "1.5em" }} />, label: "Terms & Conditions" },
-    { href: "/safeguarding", icon: <LocalPolice sx={{ fontSize: "1.5em" }} />, label: "Safeguarding Policy" },
+    { href: "/policies/privacy", icon: <Policy sx={{ fontSize: "1.5em" }} />, label: "Privacy Policy" },
+    { href: "/policies/terms", icon: <PrivacyTip sx={{ fontSize: "1.5em" }} />, label: "Terms & Conditions" },
+    { href: "/policies/safeguarding", icon: <LocalPolice sx={{ fontSize: "1.5em" }} />, label: "Safeguarding Policy" },
 ];
 
 /**
