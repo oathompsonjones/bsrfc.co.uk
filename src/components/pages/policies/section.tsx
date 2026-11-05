@@ -10,7 +10,7 @@ import type { ReactNode } from "react";
  */
 export function Section({ title, children }: Readonly<{ title: string; children: ReactNode; }>): ReactNode {
     return (
-        <Box sx={{ mb: 4 }}>
+        <Box sx={{ mt: 4 }}>
             <Typography gutterBottom variant="h5">{title}</Typography>
             {children}
         </Box>

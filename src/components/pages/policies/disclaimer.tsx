@@ -9,8 +9,15 @@ import type { ReactNode } from "react";
 export function Disclaimer(): ReactNode {
     return (
         <Box sx={{ mb: 4, textAlign: "center" }}>
-            <Typography color="warning" gutterBottom variant="h6">DRAFT DOCUMENT – NOT AN APPROVED POLICY</Typography>
-            <Typography color="warning">
+            <Typography
+                color="warning"
+                gutterBottom
+                sx={{ fontWeight: "900", textTransform: "uppercase" }}
+                variant="h6"
+            >
+                Draft Document – Not an Approved Policy
+            </Typography>
+            <Typography color="warning" sx={{ fontWeight: "700" }}>
                 This document is a draft prepared for the BSRFC website rewrite. It is provided for example only and
                 does not represent the Club&apos;s final or approved policy. It will be replaced with an official
                 document approved by the Club before publication.
