@@ -2,19 +2,13 @@
 
 import { Button, ButtonGroup, Menu, MenuItem } from "@mui/material";
 import type { Dispatch, ReactNode, SetStateAction } from "react";
+import { KeyboardArrowDown, OpenInNew } from "@mui/icons-material";
+import type { NavItemData, NavItemLink } from "./header";
 import { useCallback, useEffect, useRef } from "react";
-import { KeyboardArrowDown } from "@mui/icons-material";
-import Link from "next/dist/client/link";
-import OpenInNew from "@mui/icons-material/OpenInNew";
+import Link from "next/link";
 
-type Props<S> = {
-    children: Array<{ href: string; label: string; }>;
-    href: string;
-    label: string;
+type Props<S> = NavItemLink | NavItemData & {
     menuState: [S, Dispatch<SetStateAction<S>>];
-} | {
-    href: string;
-    label: string;
 };
 
 /**
@@ -27,7 +21,7 @@ type Props<S> = {
  */
 export function NavItem(props: Props<string | null>): ReactNode {
     if ("children" in props) {
-        const { children, href, label, menuState } = props;
+        const { children, href, label, menuState, external } = props;
         const [openMenu, setOpenMenu] = menuState;
         const anchorRef = useRef<HTMLDivElement>(null);
         const isOpen = openMenu === href.slice(1);
@@ -57,7 +51,7 @@ export function NavItem(props: Props<string | null>): ReactNode {
         return (
             <>
                 <ButtonGroup color="inherit" id="button-group" ref={anchorRef} variant="text">
-                    <NavItem href={href} label={label} />
+                    <NavItem external={external ?? false} href={href} label={label} />
                     <Button onClick={toggleMenu} size="small">
                         <KeyboardArrowDown />
                     </Button>
@@ -78,7 +72,9 @@ export function NavItem(props: Props<string | null>): ReactNode {
                 >
                     {[children].flat().map((link) => (
                         <MenuItem component={Link} href={link.href} key={link.href} onClick={closeMenu}>
-                            {link.label}
+                            {link.label} {link.external ?? false
+                                ? <OpenInNew fontSize="inherit" sx={{ ml: 1 }} />
+                                : null}
                         </MenuItem>
                     ))}
                 </Menu>
@@ -86,12 +82,12 @@ export function NavItem(props: Props<string | null>): ReactNode {
         );
     }
 
-    const { href, label } = props;
+    const { external, href, label } = props;
 
     return (
         <Button
             color="inherit"
-            endIcon={(/^https?:\/\//u).test(href) ? <OpenInNew fontSize="inherit" /> : undefined}
+            endIcon={external ?? false ? <OpenInNew fontSize="inherit" /> : undefined}
             href={href}
             variant="text"
         >

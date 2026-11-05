@@ -1,10 +1,8 @@
 import { Collapse, IconButton, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
+import { ExpandLess, ExpandMore, OpenInNew } from "@mui/icons-material";
 import { memo, useCallback } from "react";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
 import Link from "next/link";
 import type { NavItemData } from "./header";
-import OpenInNew from "@mui/icons-material/OpenInNew";
 import type { ReactNode } from "react";
 
 type Props = {
@@ -30,7 +28,7 @@ function MobileNavItemBase({ expanded, item, onNavigate, onToggle }: Props): Rea
         <>
             <ListItem
                 disablePadding
-                secondaryAction={item.links
+                secondaryAction={item.children
                     ? (
                         <IconButton color="inherit" edge="end" onClick={handleToggle}>
                             {expanded ? <ExpandLess /> : <ExpandMore />}
@@ -46,14 +44,14 @@ function MobileNavItemBase({ expanded, item, onNavigate, onToggle }: Props): Rea
                     sx={{ color: "common.white" }}
                 >
                     <ListItemText primary={item.label} />
-                    {(/^https?:\/\//u).test(item.href) ? <OpenInNew fontSize="small" /> : null}
+                    {item.external ?? false ? <OpenInNew fontSize="small" /> : null}
                 </ListItemButton>
             </ListItem>
-            {item.links
+            {item.children
                 ? (
                     <Collapse in={expanded} timeout="auto" unmountOnExit>
                         <List disablePadding>
-                            {item.links.map((link) => (
+                            {item.children.map((link) => (
                                 <ListItemButton
                                     component={Link}
                                     href={link.href}
@@ -62,6 +60,7 @@ function MobileNavItemBase({ expanded, item, onNavigate, onToggle }: Props): Rea
                                     sx={{ color: "common.white", pl: 4 }}
                                 >
                                     <ListItemText primary={link.label} />
+                                    {link.external ?? false ? <OpenInNew fontSize="small" sx={{ ml: 1 }} /> : null}
                                 </ListItemButton>
                             ))}
                         </List>

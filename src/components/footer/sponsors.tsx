@@ -446,6 +446,7 @@ export function Sponsors(): ReactNode {
 
     return (
         <Box
+            className="edge"
             ref={containerRef}
             sx={{ height: "75px", overflow: "hidden", overscrollBehaviorX: "contain", width: "100%" }}
         >

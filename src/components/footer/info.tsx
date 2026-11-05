@@ -1,8 +1,36 @@
 "use client";
 
-import { Box, Stack, Typography } from "@mui/material";
+import { Facebook, Instagram, LocalPolice, LocationPin, Mail, Phone, Policy, PrivacyTip, X } from "@mui/icons-material";
+import { Stack, Typography } from "@mui/material";
 import Link from "next/link";
 import type { ReactNode } from "react";
+
+const contacts = [
+    {
+        href: "/location",
+        icon: <LocationPin sx={{ fontSize: "1.5em" }} />,
+        label: (
+            <>
+                Silver Leys, Hadham Road,<br />
+                Bishop's Stortford, Hertfordshire, CM23 2QE
+            </>
+        ),
+    },
+    { href: "/phone", icon: <Phone sx={{ fontSize: "1.5em" }} />, label: "01279 652092" },
+    { href: "/mail", icon: <Mail sx={{ fontSize: "1.5em" }} />, label: "secretary@bsrfc.co.uk" },
+];
+
+const socials = [
+    { href: "/x", icon: <X /> },
+    { href: "/instagram", icon: <Instagram /> },
+    { href: "/facebook", icon: <Facebook /> },
+];
+
+const legalLinks = [
+    { href: "/privacy", icon: <Policy sx={{ fontSize: "1.5em" }} />, label: "Privacy Policy" },
+    { href: "/terms", icon: <PrivacyTip sx={{ fontSize: "1.5em" }} />, label: "Terms & Conditions" },
+    { href: "/safeguarding", icon: <LocalPolice sx={{ fontSize: "1.5em" }} />, label: "Safeguarding Policy" },
+];
 
 /**
  * Displays copyright, company, charity, and website credit information.
@@ -15,42 +43,50 @@ export function Info(): ReactNode {
         ? `${startYear}-${currentYear}`
         : `${startYear}`;
 
-    const divider = (
-        <Box component="span" sx={{ color: "lightgrey", display: { sm: "inline", xs: "none" }, px: 1 }}>•</Box>
-    );
-
     return (
-        <Stack sx={{ alignItems: "center" }}>
-            <Stack
-                direction={{ sm: "row", xs: "column" }}
-                divider={divider}
-                sx={{ alignItems: "center", maxWidth: "100%" }}
-            >
-                <Typography variant="caption">
-                    Silver Leys, Hadham Road, Bishop's Stortford, Hertfordshire, CM23 2QE, UK
-                </Typography>
-                <Typography variant="caption">
-                    <Link href="tel:+441279652092">01279 652092</Link>
-                </Typography>
-                <Typography variant="caption">
-                    <Link href="mailto:secretary@bsrfc.co.uk">secretary@bsrfc.co.uk</Link>
-                </Typography>
+        <Stack
+            direction={{ md: "row", xs: "column" }}
+            spacing={3}
+            sx={{ justifyContent: "space-evenly", width: "100%" }}
+        >
+            <Stack spacing={3}>
+                <Stack spacing={1}>
+                    {contacts.map(({ href, icon, label }) => (
+                        <Typography
+                            component={Link}
+                            href={href}
+                            key={href}
+                            sx={{ alignItems: "center", display: "inline-flex", gap: "0.5em" }}
+                            variant="caption"
+                        >
+                            {icon} {label}
+                        </Typography>
+                    ))}
+                </Stack>
+                <Stack direction="row" spacing={1}>
+                    {socials.map(({ href, icon }) => (
+                        <Typography component={Link} href={href} key={href} variant="caption">
+                            {icon}
+                        </Typography>
+                    ))}
+                </Stack>
             </Stack>
-            <Stack
-                direction={{ sm: "row", xs: "column" }}
-                divider={divider}
-                sx={{ alignItems: "center", maxWidth: "100%" }}
-            >
+            <Stack spacing={1}>
                 <Typography variant="caption">© {copyrightYear} Bishop's Stortford Rugby Football Club</Typography>
                 <Typography variant="caption">Company No. 09612222</Typography>
                 <Typography variant="caption">Charity No. 1162479</Typography>
+                {legalLinks.map(({ href, icon, label }) => (
+                    <Typography
+                        component={Link}
+                        href={href}
+                        key={href}
+                        sx={{ alignItems: "center", display: "inline-flex", gap: "0.5em" }}
+                        variant="caption"
+                    >
+                        {icon} {label}
+                    </Typography>
+                ))}
             </Stack>
-            <Typography variant="caption">
-                Website designed & developed by{" "}
-                <Link href="https://oathompsonjones.co.uk" style={{ fontWeight: "bold", textDecoration: "none" }}>
-                    Oliver Jones
-                </Link>.
-            </Typography>
         </Stack>
     );
 }

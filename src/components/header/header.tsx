@@ -1,38 +1,38 @@
 "use client";
 
 import { AppBar, Box, Drawer, IconButton, List, Toolbar } from "@mui/material";
+import { Close, Menu } from "@mui/icons-material";
 import { useCallback, useState } from "react";
-import CloseIcon from "@mui/icons-material/Close";
 import Image from "next/image";
-import MenuIcon from "@mui/icons-material/Menu";
 import { MobileNavItem } from "./mobileNavItem";
 import { NavItem } from "./navItem";
 import type { ReactNode } from "react";
 import { useNavScroll } from "hooks/useNavScroll";
 
-export type NavItemData = {
+export type NavItemLink = {
+    external?: boolean;
     href: string;
     label: string;
-    links?: Array<{ href: string; label: string; }>;
+};
+export type NavItemData = NavItemLink & {
+    children?: NavItemLink[];
 };
 
 const logoSize = 150;
 const navItems: NavItemData[] = [
     { href: "/", label: "Home" },
     {
-        href: "/about",
-        label: "Club",
-        links: [
+        children: [
             { href: "/contact", label: "Contact" },
             { href: "/history", label: "History" },
             { href: "/safeguarding", label: "Safeguarding" },
             { href: "/find-us", label: "Find Us" },
         ],
+        href: "/about",
+        label: "Club",
     },
     {
-        href: "/teams",
-        label: "Teams",
-        links: [
+        children: [
             { href: "/teams/men", label: "Senior Men" },
             { href: "/teams/social-men", label: "Social Men" },
             { href: "/teams/women", label: "Women" },
@@ -42,31 +42,34 @@ const navItems: NavItemData[] = [
             { href: "/teams/minis", label: "Minis" },
             { href: "/teams/touch", label: "Touch" },
         ],
+        href: "/teams",
+        label: "Teams",
     },
     {
-        href: "/news",
-        label: "News",
-        links: [
+        children: [
             { href: "/match-reports", label: "Match Reports" },
             { href: "/highlights", label: "Highlights" },
             { href: "/gallery", label: "Gallery" },
         ],
+        href: "/news",
+        label: "News",
     },
     {
-        href: "/membership",
-        label: "Membership",
-        links: [
+        children: [
             { href: "/join", label: "Join" },
             { href: "/volunteers", label: "Volunteers" },
+            { external: true, href: "/gms", label: "GMS" },
         ],
+        href: "/membership",
+        label: "Membership",
     },
     {
+        children: [{ href: "/venue-hire", label: "Venue Hire" }],
         href: "/events",
         label: "Events",
-        links: [{ href: "/venue-hire", label: "Venue Hire" }],
     },
-    { href: "https://bsrfcshop.co.uk", label: "Shop" },
-    { href: "https://bsrfc.club", label: "Sponsors" },
+    { external: true, href: "/shop", label: "Shop" },
+    { external: true, href: "/sponsors", label: "Sponsors" },
 ];
 
 /**
@@ -155,10 +158,10 @@ export function Header(): ReactNode {
                         justifyContent: "center",
                     }}
                 >
-                    {navItems.map(({ href, label, links }) => (
-                        links
-                            ? <NavItem href={href} key={href} label={label} menuState={menuState}>{links}</NavItem>
-                            : <NavItem href={href} key={href} label={label} />
+                    {navItems.map(({ href, label, children, external }) => (
+                        children
+                            ? <NavItem href={href} key={href} label={label} menuState={menuState}>{children}</NavItem>
+                            : <NavItem external={external ?? false} href={href} key={href} label={label} />
                     ))}
                 </Toolbar>
                 <Toolbar
@@ -175,7 +178,7 @@ export function Header(): ReactNode {
                         BETA
                     </Box>
                     <IconButton color="inherit" onClick={openMobileMenu}>
-                        <MenuIcon />
+                        <Menu />
                     </IconButton>
                 </Toolbar>
             </AppBar>
@@ -196,7 +199,7 @@ export function Header(): ReactNode {
                 <Box role="presentation">
                     <Toolbar sx={{ justifyContent: "flex-end" }}>
                         <IconButton color="inherit" onClick={closeMobileMenu}>
-                            <CloseIcon />
+                            <Close />
                         </IconButton>
                     </Toolbar>
                     <List disablePadding>
