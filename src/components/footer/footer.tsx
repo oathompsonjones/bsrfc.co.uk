@@ -20,7 +20,7 @@ export function Footer(): ReactNode {
                 <Typography sx={{ textAlign: "center" }} variant="caption">
                     Website designed & developed by{" "}
                     <Link href="https://oathompsonjones.co.uk" style={{ fontWeight: "bold", textDecoration: "none" }}>
-                        Oliver Jones
+                        Oliver Jones (oathompsonjones)
                     </Link>.
                 </Typography>
             </Stack>
