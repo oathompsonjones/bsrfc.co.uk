@@ -55,7 +55,7 @@ const structuredData = JSON.stringify({
             "@id": "https://bsrfc.co.uk/#website",
             // eslint-disable-next-line @typescript-eslint/naming-convention
             "@type": "WebSite",
-            creator: {
+            author: {
                 // eslint-disable-next-line @typescript-eslint/naming-convention
                 "@id": "https://oathompsonjones.co.uk/#person",
             },
