@@ -17,33 +17,57 @@ const inter = localFont({
     variable: "--font-inter",
 });
 
-const organizationStructuredData = JSON.stringify(JSON.parse(String.raw`
-{
-  "@context": "https://schema.org",
-  "@type": "SportsOrganization",
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "GB",
-    "addressLocality": "Bishop's Stortford",
-    "addressRegion": "Hertfordshire",
-    "postalCode": "CM23 2QE",
-    "streetAddress": "Silver Leys, Hadham Road"
-  },
-  "alternateName": "BSRFC",
-  "email": "secretary@bsrfc.co.uk",
-  "foundingDate": "1921",
-  "logo": "https://bsrfc.co.uk/logo.png",
-  "name": "Bishop's Stortford Rugby Football Club",
-  "sameAs": [
-    "https://www.facebook.com/BishopsStortfordRugbyClub",
-    "https://www.instagram.com/bsrfc",
-    "https://x.com/BSRUGBY"
-  ],
-  "sport": "Rugby union",
-  "telephone": "+44-1279-652092",
-  "url": "https://bsrfc.co.uk"
-}
-`) as Record<string, unknown>).replace(/</gu, "\\u003c");
+const structuredData = JSON.stringify({
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    "@context": "https://schema.org",
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    "@graph": [
+        {
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            "@id": "https://bsrfc.co.uk/#organization",
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            "@type": "SportsOrganization",
+            address: {
+                // eslint-disable-next-line @typescript-eslint/naming-convention
+                "@type": "PostalAddress",
+                addressCountry: "GB",
+                addressLocality: "Bishop's Stortford",
+                addressRegion: "Hertfordshire",
+                postalCode: "CM23 2QE",
+                streetAddress: "Silver Leys, Hadham Road",
+            },
+            alternateName: "BSRFC",
+            email: "secretary@bsrfc.co.uk",
+            foundingDate: "1921",
+            logo: "https://bsrfc.co.uk/logo.png",
+            name: "Bishop's Stortford Rugby Football Club",
+            sameAs: [
+                "https://www.facebook.com/BishopsStortfordRugbyClub",
+                "https://www.instagram.com/bsrfc",
+                "https://x.com/BSRUGBY",
+            ],
+            sport: "Rugby union",
+            telephone: "+44-1279-652092",
+            url: "https://bsrfc.co.uk",
+        },
+        {
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            "@id": "https://bsrfc.co.uk/#website",
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            "@type": "WebSite",
+            creator: {
+                // eslint-disable-next-line @typescript-eslint/naming-convention
+                "@id": "https://oathompsonjones.co.uk/#person",
+            },
+            name: SITE_TITLE,
+            publisher: {
+                // eslint-disable-next-line @typescript-eslint/naming-convention
+                "@id": "https://bsrfc.co.uk/#organization",
+            },
+            url: "https://bsrfc.co.uk",
+        },
+    ],
+}).replace(/</gu, "\\u003c");
 
 // https://realfavicongenerator.net (remove the mask icon and msapplication stuff)
 export const metadata: Metadata = {
@@ -93,10 +117,7 @@ export default function Layout({ children }: { readonly children: ReactNode; }):
             <body className={inter.variable}>
                 <script
                     // eslint-disable-next-line react/no-danger
-                    dangerouslySetInnerHTML={{
-                        // eslint-disable-next-line @typescript-eslint/naming-convention
-                        __html: organizationStructuredData,
-                    }}
+                    dangerouslySetInnerHTML={{ __html: structuredData }}
                     type="application/ld+json"
                 />
                 <noscript>You need to enable JavaScript to run this app.</noscript>
