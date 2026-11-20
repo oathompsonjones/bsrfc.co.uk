@@ -117,7 +117,10 @@ export default function Layout({ children }: { readonly children: ReactNode; }):
             <body className={inter.variable}>
                 <script
                     // eslint-disable-next-line react/no-danger
-                    dangerouslySetInnerHTML={{ __html: structuredData }}
+                    dangerouslySetInnerHTML={{
+                        // eslint-disable-next-line @typescript-eslint/naming-convention
+                        __html: structuredData,
+                    }}
                     type="application/ld+json"
                 />
                 <noscript>You need to enable JavaScript to run this app.</noscript>
